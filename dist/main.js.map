@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","sourceRoot":"","sources":["../src/main.ts"],"names":[],"mappings":";;;AACA,SAAgB,IAAI;IACjB,OAAO,CAAC,GAAG,CAAC,mCAAmC,CAAC,CAAC;AACpD,CAAC;AAFD,oBAEC;AAED,IAAI,EAAE,CAAC","sourcesContent":["\nexport function main (){\n   console.log('\\nTESTING, Main, 1... 2... 3...\\n');\n}\n\nmain();\n"]}
