@@ -45,7 +45,8 @@
         "**/.D3V/**/*": true
     },
     "conventionalCommits.scopes": [
-        "Color Class"
+        "Color Class",
+        "VS Code Config"
     ],
 
 }

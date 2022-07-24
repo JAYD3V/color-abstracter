@@ -1,55 +1,53 @@
 {
-  "name": "j-color",
-  "description": "Instantiate a color, then access it in RGB, Hex, or HSV format. Perfect for conversions &amp;/or working in a multi-format env.",
-  "author": "Andrew Chambers <W3Dojo@Gmail.com>",
-  "version": "0.0.1",
-  "license": "Apache-2.0",
+   "name": "j-color",
+   "description": "Instantiate a color, then access it in RGB, Hex, or HSV format. Perfect for conversions &amp;/or working in a multi-format env.",
+   "author": "Andrew Chambers <W3Dojo@Gmail.com>",
+   "version": "0.0.1",
+   "license": "Apache-2.0",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/JAYD3V/j-color.git"
+   },
+   "bugs": {
+      "url": "https://github.com/JAYD3V/j-color/issues"
+   },
 
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JAYD3V/j-color.git"
-  },
+   "scripts": {
+      "lint": "npx eslint src --fix",
+      "start": "node dist/main.js",
+      "test": "moch dist/test"
+   },
 
-  "bugs": { "url": "https://github.com/JAYD3V/j-color/issues" },
-
-  "scripts": {
-    "lint": "npx eslint src --fix",
-    "start": "node dist/main.js",
-    "test": "moch dist/test"
-  },
-
-  "keywords": [
-    "Color",
-    "Coversion",
-    "JS",
-    "JavaScript",
-    "TS",
-    "TypeScript",
-    "HSV",
-    "RGB",
-    "Hex",
-    "Hex-color",
-    "Base-16",
-    "Base-10",
-    "API",
-    "Color-class",
-    "Class",
-    "Color-object",
-    "Object"
-  ],
-
-  "main": "dist/main.js",
-
-  "devDependencies": {
-    "@tsconfig/node16": "^1.0.3",
-    "@tsconfig/node16-strictest": "^1.0.3",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.0.6",
-    "@typescript-eslint/eslint-plugin": "^5.30.7",
-    "@typescript-eslint/parser": "^5.30.7",
-    "eslint": "^8.20.0",
-    "mocha": "^10.0.0",
-    "typescript": "^4.7.4",
-    "typescript-eslint-language-service": "^5.0.0"
-  }
+   "keywords": [
+      "Color",
+      "Coversion",
+      "JS",
+      "JavaScript",
+      "TS",
+      "TypeScript",
+      "HSV",
+      "RGB",
+      "Hex",
+      "Hex-color",
+      "Base-16",
+      "Base-10",
+      "API",
+      "Color-class",
+      "Class",
+      "Color-object",
+      "Object"
+   ],
+   "main": "dist/main.js",
+   "devDependencies": {
+      "@tsconfig/node16": "^1.0.3",
+      "@tsconfig/node16-strictest": "^1.0.3",
+      "@types/mocha": "^9.1.1",
+      "@types/node": "^18.0.6",
+      "@typescript-eslint/eslint-plugin": "^5.30.7",
+      "@typescript-eslint/parser": "^5.30.7",
+      "eslint": "^8.20.0",
+      "mocha": "^10.0.0",
+      "typescript": "^4.7.4",
+      "typescript-eslint-language-service": "^5.0.0"
+   }
 }
