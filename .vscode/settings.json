@@ -1,0 +1,51 @@
+{
+    // FILE NESTING CONFIGURATION & EXPLORER-EXCLUDED FILES LIST
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "*.js": "${capture}.js.map, ${capture}.d.ts, ${capture}.d.ts.map",
+        "tsconfig.json": "tsconfig.tsbuildinfo",
+        "tsconfig.*.json": "tsconfig.tsbuildinfo"
+    },
+
+    "files.exclude": {
+        "**/.git/": true,
+        "node_modules/": true,
+        "**/.editorconfig": true,
+        "**/.npmrc": true,
+        "**/icon.png": true,
+        "LICENSE": true
+    },
+
+    // LOCAL HISTORY CONFIGURATION & LOCAL-HISTORY EXCLUDED FILES LIST
+    "workbench.localHistory.enabled": true,
+    "workbench.localHistory.mergeWindow": 180,
+    "workbench.localHistory.exclude": {
+
+        // CONFIGURATION FILES
+        "**/.vscode/**/*": true,
+        "**/.vscodeignore": true,
+        "**/.gitignore": true,
+        "**/.gitattributes": true,
+        "**/.npmrc": true,
+        "**/.npmignore": true,
+        "**/.prettierrc": true,
+        "**/.editorconfig": true,
+
+        // PROJECT FILES
+        "**/node_modules/**/*": true,
+        "**/dist/**/*": true,
+        "**/*.js": true,
+        "**/*.*.js": true,
+        "**/*.js.map": true,
+        "**/*.d.ts.map": true,
+        "**/*.d.ts": true,
+
+        // MISCELLANEOUS
+        "**/.D3V/**/*": true
+    },
+    "conventionalCommits.scopes": [
+        "Color Class"
+    ],
+
+}
