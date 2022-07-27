@@ -11,16 +11,18 @@
    "bugs": {
       "url": "https://github.com/JAYD3V/j-color/issues"
    },
-
    "scripts": {
       "lint": "npx eslint src --fix",
-      "start": "node dist/main.js",
-      "test": "moch dist/test"
+      "start": "npm run start:main",
+      "start:main": "node dist/main.js",
+      "start:sandbox": "node dist/sandbox.js",
+      "test": "mocha dist/test",
+      "build": "tsc -b tsconfig.json",
+      "build:watch": "tsc -b tsconfig.json --watch"
    },
-
    "keywords": [
       "Color",
-      "Coversion",
+      "Conversion",
       "JS",
       "JavaScript",
       "TS",
