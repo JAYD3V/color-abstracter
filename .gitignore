@@ -1,0 +1,28 @@
+# SCM
+.gitattributes
+
+# Node.js, npm, & Dependancies
+node_modules/*
+package-lock.json
+.npmignore
+.npmrc
+
+# Environment Configuration
+.vscode/launch.json
+.editorconfig
+.prettierrc
+.eslintrc.json
+
+# TypeScript Emitted Documents
+dist/
+types/
+*.js
+*.js.map
+*.d.ts
+*.d.ts.map
+
+# FILE FOR TEST RUNNING SNIPPETS
+**/sandbox.ts
+
+# TEMPORARY DIRECTORY FOR SAVING CODE/DOCS
+.D3V/
