@@ -8,7 +8,7 @@ package-lock.json
 .npmrc
 
 # Environment Configuration
-.vscode/launch.json
+.vscode/
 .editorconfig
 .prettierrc
 .eslintrc.json
@@ -26,3 +26,5 @@ types/
 
 # TEMPORARY DIRECTORY FOR SAVING CODE/DOCS
 .D3V/
+.vscode/settings.json
+.vscode/tasks.json
