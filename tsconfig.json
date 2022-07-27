@@ -2,39 +2,18 @@
    "$schema": "https://json.schemastore.org/tsconfig",
    "extends": "@tsconfig/node16-strictest/tsconfig.json",
 
-   "files": [
-      // MAIN
-      "src/main.ts",
-
-      // API
-      "src/api/hex.ts",
-      "src/api/hsv.ts",
-      "src/api/color.ts",
-
-      // TESTS
-      "src/test/hex.test.ts",
-      "src/test/hsv.test.ts"
-   ],
+   "include": ["src/**/*"],
+   "exclude": [ "node_modules/", "types/", "dist/", ".D3V/" ],
 
    "compilerOptions": {
-      // ECMAS SPEC
       "lib": ["ES2022"],
-
-      // PROJECT DIRS
-      "outDir": "dist",
-      "rootDir": "src",
-      "declarationDir": "types",
-
-      // FILES EMITTED
+      "outDir": "dist/",
+      "rootDir": "src/",
+      "declarationDir": "types/",
       "declaration": true,
       "declarationMap": true,
       "sourceMap": true,
       "inlineSources": true,
-
-      // MODULE RESOLUTION
-      "resolveJsonModule": true, // SUPPORT JSON IMPORTS
-
-      // PLUGINS
       "plugins": [{ "name": "typescript-eslint-language-service" }]
    }
 }
