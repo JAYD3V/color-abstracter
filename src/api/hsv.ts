@@ -46,7 +46,7 @@ export default class HSV{
     toRgb(){
         let { hue: H, sat: S, val: V } = this.#_HSV;
 
-        if (H > 0 && H < 360){
+        if (H < 0 || H > 360){
             throw new RangeError('A color\'s hue must be between 0 and 360');
         }
         if (S < 0 || S > 100){
