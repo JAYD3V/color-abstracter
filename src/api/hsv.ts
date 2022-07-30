@@ -20,8 +20,8 @@ export type ColorArg = RgbArg | HsvArg;
 
 /**
  *
- * #### COLOR CLASS
- * The Color class contains an entire interface for working with colors in many different environments. It can be used for printing color in a terminal environment, or for converting color values from HSV to RGB. There are too many features to list in this snippet, for a full list please see the project documentation. The official documentation source can be found in several place, the README.md file in the J-Color directory, on the Npm J-Color Package page, or in the [J-Color Repository @ Https://GitHub.com/JAYD3V/J-Color](Https://GitHub.com/JAYD3V/J-Color)
+ * **HSV Class**
+ * The HSV Class is used to create abstract colors in HSV format. It contains methods for preforming the color-model conversions **_"HSV to HexColor"_** & **_"HSV to RGB"_**. An array containing `[hue, saturation, value]` can be used to create a new HSV class, or an object containing `{ hue:num, sat:num, val:num }` can be used. The HSV Class works closely with the other abstract classes RGB & HexColor. The J Color class is meant to work in an environment where multiple color models are present.
  * */
 export default class HSV{
     // PRIVATE FIELDS
@@ -49,9 +49,11 @@ export default class HSV{
         if (H < 0 || H > 360){
             throw new RangeError('A color\'s hue must be between 0 and 360');
         }
+
         if (S < 0 || S > 100){
             throw new RangeError('Saturation must be between 0 and 100');
         }
+
         if (V < 0 || V > 100){
             throw new RangeError('Value must be between 0 & 100');
         }
