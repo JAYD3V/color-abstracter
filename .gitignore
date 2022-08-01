@@ -25,6 +25,10 @@ types/
 **/sandbox.ts
 
 # TEMPORARY DIRECTORY FOR SAVING CODE/DOCS
-.D3V/
 .vscode/settings.json
 .vscode/tasks.json
+
+# PERSONAL DEV DIRECTORIES (Should never be committed)
+.__scrapbox__/
+.D3V/
+.vscode/settings.json
