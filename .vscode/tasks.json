@@ -1,18 +1,50 @@
 {
    "version": "2.0.0",
    "tasks": [
+        {
+            "label": "TSC: BUILD",
+            "detail": "Transpile the current typescript project using the root 'tsconfig.json' file.",
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": "$tsc",
+            "isBackground": false,
+            "icon": { "id": "zap", "color": "terminal.ansiYellow" },
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": {
+                "showReuseMessage": false,
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "panel": "dedicated",
+                "close": false,
+                "group": "build"
+            }
+        },
+
+        {
+            "label": "TSC: WATCH",
+            "detail": "(Continuous Background Process)Builds project as modifications are detected",
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "option": "watch",
+            "group": "build",
+            "problemMatcher": ["$tsc-watch"],
+            "icon": { "id": "eye-watch", "color": "terminal.ansiRed" },
+            "presentation": {
+                "echo": false,
+                "reveal": "never",
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "close": false
+            }
+        },
+
       {
          "label": "NODE: EXECUTE FILE",
          "detail": "Prompts user for a JS filepath to execute. If the specified path is valid, Node.js will attempt to execute the file.",
          "command": "node",
          "type": "shell",
-         "args": [
-            "${input:promptUser}"
-         ],
-         "icon": {
-            "id": "run",
-            "color": "terminal.ansiGreen"
-         },
+            "args": ["${input:promptUser}"],
+            "icon": { "id": "run", "color": "terminal.ansiGreen" },
          "presentation": {
             "showReuseMessage": false,
             "close": false,
