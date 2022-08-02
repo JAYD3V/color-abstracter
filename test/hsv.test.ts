@@ -1,3 +1,15 @@
+/**
+ * Copyright 2022, Ajay Chambers
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy
+ * of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0   */
+
+// TODO: Generate additional static tests
+// ADD: Automated test when toHSV() method is added to RGB class.
+
 // import @NodeJS
 import { ok, strictEqual as equal } from 'node:assert/strict';
 import { describe, it } from 'node:test';
