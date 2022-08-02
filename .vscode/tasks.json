@@ -1,0 +1,136 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "UPDATE BUILD",
+            "detail": "Build files marked as 'Modified'",
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "refresh",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "showReuseMessage": false,
+                "close": false,
+                "group": "build"
+            }
+        },
+        {
+            "label": "AUTO-BUILD",
+            "detail": "BG Process that builds changes as they occur",
+            "type": "typescript",
+            "tsconfig": "tsconfig.json",
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+            "icon": {
+                "id": "eye-watch",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "reveal": "never",
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "close": false,
+                "group": "build"
+            }
+        },
+        {
+            "label": "NEW BUILD",
+            "detail": "Deletes the old buid before rebuilding the entire project",
+            "dependsOn": [
+                "Delete Build",
+                "Update Build"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$tsc",
+            "group": "build",
+            "icon": {
+                "id": "refresh",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "showReuseMessage": false,
+                "close": false,
+                "group": "build"
+            }
+        },
+        {
+            "label": "DELETE BUILD",
+            "detail": "Deletes all build dirs & files",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-rvf",
+                "${workspaceFolder}/dist",
+                "${workspaceFolder}/types"
+            ],
+            "group": "build",
+            "icon": {
+                "id": "flame",
+                "color": "terminal.ansiMagenta"
+            },
+            "presentation": {
+                "panel": "new",
+                "reveal": "never",
+                "close": true,
+                "clear": true,
+            }
+        },
+        {
+            "label": "PRODUCTION BUILD",
+            "detail": "Builds recent changes into project, then executes tests.",
+            "dependsOn": [
+                "UPDATE BUILD",
+                "RUN TESTS"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": "$tsc",
+            "group": "test",
+            "icon": {
+                "id": "pulse",
+                "color": "terminal.ansiGreen"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "panel": "dedicated",
+                "close": false,
+                "showReuseMessage": false,
+                "group": "test"
+            }
+        },
+        {
+            "label": "RUN TESTS",
+            "detail": "Runs all test using the Node.js built-in test-runner",
+            "type": "npm",
+            "script": "test",
+            "group": { "kind": "test", "isDefault": true },
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiYellow"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "close": false,
+                "showReuseMessage": false,
+                "group": "test"
+            }
+        }
+    ]
+}
