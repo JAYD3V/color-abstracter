@@ -8,10 +8,8 @@ package-lock.json
 .npmrc
 
 # Environment Configuration
-.vscode/
+.vscode/settings.json
 .editorconfig
-.prettierrc
-.eslintrc.json
 
 # TypeScript Emitted Documents
 dist/
@@ -24,11 +22,6 @@ types/
 # FILE FOR TEST RUNNING SNIPPETS
 **/sandbox.ts
 
-# TEMPORARY DIRECTORY FOR SAVING CODE/DOCS
-.vscode/settings.json
-.vscode/tasks.json
-
 # PERSONAL DEV DIRECTORIES (Should never be committed)
 .__scrapbox__/
 .D3V/
-.vscode/settings.json
