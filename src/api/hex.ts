@@ -1,6 +1,6 @@
-class Color{
+class HexColor{
     RGB = { red: 0, grn: 0, blu: 0 };
-    transparency: boolean;
+
     constructor(hexStr: string){
         const len = hexStr.length;
 
@@ -17,9 +17,11 @@ class Color{
             case 6:
             case 4:
             case 8:
+
             default:
                 throw new Error('HexColor arg has an invalid amount of digits');
         }
+
         // parseInt(hexStr, 10);
     }
 }

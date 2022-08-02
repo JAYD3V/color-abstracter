@@ -2,13 +2,13 @@
    "$schema": "https://json.schemastore.org/tsconfig",
    "extends": "@tsconfig/node16-strictest/tsconfig.json",
 
-   "include": ["src/**/*"],
+   "include": ["src/**/*", "test/**/*", "dist/lib/hsvToRgb-Assertion.ts"],
    "exclude": [ "node_modules/", "types/", "dist/", ".D3V/" ],
 
    "compilerOptions": {
       "lib": ["ES2022"],
       "outDir": "dist/",
-      "rootDir": "src/",
+      "rootDirs": ["src/", "test/"],
       "declarationDir": "types/",
       "declaration": true,
       "declarationMap": true,
