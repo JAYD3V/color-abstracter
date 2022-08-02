@@ -44,7 +44,7 @@
    },
 
    "scripts": {
-      "eslint": "npx eslint src --fix",
+      "eslint": "npx eslint test src --fix",
       "start": "npm run start:main",
       "start:main": "node dist/main.js",
       "start:sandbox": "node dist/sandbox.js",
