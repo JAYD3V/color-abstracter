@@ -1,7 +1,7 @@
 export type HsvArr = [number, number, number];
 export type RgbArr = [number, number, number];
-export type RgbObj = { R:number, G:number, B:number };
-export type HsvObj = { H:number, S:number, V:number };
+export type RgbObj = { R:number; G:number; B:number };
+export type HsvObj = { H:number; S:number; V:number };
 
 
 
@@ -9,7 +9,8 @@ const { abs, trunc, round } = Math;
 
 
 /**
- * HSV Class - Abstraction of a color thats defined by the "HSV Color Model". This class is to be used as is, if working with HSV, or to convert from and to HSV. the toRGB method converts the color (in hsv format) to an object formated as the more common RGB color model. See README.md for full details, and a fill list of methods & class-members. */
+ * HSV Class - Abstracts colors in an HSV-Model format. This class comes with
+ * the algorithms necessary to convert between other color-formats/models  */
 export default class HSV{
     name;
     H; S; V;
@@ -24,16 +25,16 @@ export default class HSV{
 
 
     #coercedValidation_H = (arg: number) => {
-        if (arg > 360) return 360;
-        if (arg < 0) return 0;
+        if (arg > 360) {return 360;}
+        if (arg < 0) {return 0;}
 
         return arg;
     };
 
 
     #coercedValidation_S = (arg: number) => {
-        if (arg > 100) return 100;
-        if (arg < 0) return 0;
+        if (arg > 100) {return 100;}
+        if (arg < 0) {return 0;}
 
         return arg;
     };

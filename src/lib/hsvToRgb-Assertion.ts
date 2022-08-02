@@ -30,10 +30,11 @@ export default function hsvToRgbAssert(actualRgb: RgbArr, expectedRgb: RgbArr){
     for (let i = 0; i < 3; i++){
         const A = actualRgb[i];
         const E = expectedRgb[i];
-        const color = (i == 0) ? 'Red' : (i == 1) ? 'Green' : 'Blue';
+        const color = (i === 0) ? 'Red' : (i === 1) ? 'Green' : 'Blue';
 
 
-        /** Generates assertion errors w/ the same expected & actual arguments
+        /**
+          * Generates assertion errors w/ the same expected & actual arguments
           * pre assigned to the AssertionError `opts` parameter. */
         const error = (mesg: string) => new AssertionError({
             message  : mesg,
@@ -42,7 +43,7 @@ export default function hsvToRgbAssert(actualRgb: RgbArr, expectedRgb: RgbArr){
         });
 
 
-        if (!E) throw new Error('expectedRgb contains undefined values.');
+        if (!E) {throw new Error('expectedRgb contains undefined values.');}
 
         if (!A){
             FAIL(error(`The actual rgb value: ${color} is undefined`));

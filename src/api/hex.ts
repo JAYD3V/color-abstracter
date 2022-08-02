@@ -8,7 +8,7 @@ class HexColor{
             throw new Error('HexStr arg must start with a number-sign -> #');
         }
 
-        if (len != 3 && len != 4 && len != 6 && len != 8){
+        if (len !== 3 && len !== 4 && len !== 6 && len !== 8){
             console.log('');
         }
 
