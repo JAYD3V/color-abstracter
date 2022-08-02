@@ -6,7 +6,11 @@
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "tsconfigRootDir": ".",
+    "project": [
+      "./tsconfig.json"
+    ]
   },
   "rules": {
     "constructor-super": "warn",
@@ -30,7 +34,7 @@
     "no-unused-labels": "warn",
     "no-var": "warn",
     "indent": [
-      "error",
+      "warn",
       4,
       {
         "FunctionExpression": {
@@ -50,7 +54,7 @@
       }
     ],
     "max-len": [
-      "error",
+      "warn",
       {
         "code": 80,
         "tabWidth": 4,
@@ -60,6 +64,13 @@
         "ignoreUrls": true,
         "ignoreComments": false,
         "ignoreTrailingComments": false
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "warn",
+      {
+        "max": 6,
+        "maxEOF": 1
       }
     ],
     /*
