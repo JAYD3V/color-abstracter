@@ -12,6 +12,9 @@
       "./tsconfig.json"
     ]
   },
+
+  "ignorePatterns":[".vscode/", ".__scrapbox__/", "dist/", "types/"],
+
   "rules": {
     "constructor-super": "warn",
     "curly": "warn",
