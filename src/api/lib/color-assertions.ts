@@ -26,8 +26,8 @@ import type { RgbArr } from '../hsv.js';
  * @param expectedRgb
  *      The RGB array you are expecting the conversion to return
  */
-export default function hsvToRgbAssert(actualRgb: RgbArr, expectedRgb: RgbArr){
-    for (let i = 0; i < 3; i++){
+export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
+    for (let i = 0; i < 3; i++) {
         const A = actualRgb[i];
         const E = expectedRgb[i];
         const color = (i === 0) ? 'Red' : (i === 1) ? 'Green' : 'Blue';
@@ -36,26 +36,26 @@ export default function hsvToRgbAssert(actualRgb: RgbArr, expectedRgb: RgbArr){
         /**
           * Generates assertion errors w/ the same expected & actual arguments
           * pre assigned to the AssertionError `opts` parameter. */
-        const error = (mesg: string) => new AssertionError({
+        const error = (mesg:string) => new AssertionError({
             message  : mesg,
             expected : E,
             actual   : A
         });
 
 
-        if (!E) {throw new Error('expectedRgb contains undefined values.');}
+        if (!E) { throw new Error('expectedRgb contains undefined values.'); }
 
-        if (!A){
+        if (!A) {
             FAIL(error(`The actual rgb value: ${color} is undefined`));
-        } else if (A > 255){
+        } else if (A > 255) {
             FAIL(error(`The value of ${color} is 'greater' than 255`));
-        } else if (A < 0){
+        } else if (A < 0) {
             FAIL(error(`The value of ${color} is 'lesser' than 0`));
-        } else if (A !== E && A + 1 !== E && A - 1 !== E){
+        } else if (A !== E && A + 1 !== E && A - 1 !== E) {
             FAIL(error(`The value of ${color}=${A} but should be ${E}`));
         }
     }
 
-    PASS(true, 'hsvToRgbAssert Passed! The two arrays closely match!\n'
-             + `Expected RGB: [${expectedRgb}]\nActual RGB: [${actualRgb}]`);
+    PASS(true, 'hsvToRgbAssert Passed! The two arrays closely match!\n' +
+             `Expected RGB: [${expectedRgb}]\nActual RGB: [${actualRgb}]`);
 }

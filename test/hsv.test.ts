@@ -60,11 +60,11 @@ generateHsvTest('Orange:',  [19,  85, 94],  [240,  99,  36]);
  * @param hsvArr An array of the 3 values: hue, sat & val, that defines the
  *  HSV-modeled color.
  * @return Returns the dynamically generated test. */
-function generateHsvTest (name: string, hsvArr: HsvArr, rgbArr:RgbArr){
-    const desc = 'HSV CLASS TEST\n'
-               + `\t  COLOR'S NAME:  ${name}\n`
-               + `\t   INITIAL HSV:  ${hsvArr}\n`
-               + `\t  EXPECTED RGB:  ${rgbArr}\n`;
+function generateHsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
+    const desc = 'HSV CLASS TEST\n' +
+               `\t  COLOR'S NAME:  ${name}\n` +
+               `\t   INITIAL HSV:  ${hsvArr}\n` +
+               `\t  EXPECTED RGB:  ${rgbArr}\n`;
 
     return describe(desc, () => hsvTest(name, hsvArr, rgbArr));
 }
@@ -72,7 +72,7 @@ function generateHsvTest (name: string, hsvArr: HsvArr, rgbArr:RgbArr){
 
 
 /** HSV Class Test */
-function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
+function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
     // Validate "name" Argument
     describe(`#name = ${name} | HSV Constructor Arg/Param`, () => {
         it('should exist', () => { ok(name); });
@@ -103,6 +103,7 @@ function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
     // TEST: HSV-member: "HSV.hue"
     describe('#H = color.H (hue) |  The value for "HUE".', () => {
         const H = color.H;
+
         it('should be greater or equal to 0', () => { ok(H >= 0); });
         it('should be lesser or equal to 360', () => { ok(H <= 360); });
     });
@@ -110,6 +111,7 @@ function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
     // TEST: HSV-member: "HSV.sat"
     describe('#S = color.S (sat)  |  The value for "SATURATION"', () => {
         const S = color.S;
+
         it('should be greater or equal to 0', () => { ok(S >= 0); });
         it('should be lesser or equal to 100', () => { ok(S <= 100); });
     });
@@ -117,6 +119,7 @@ function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
     // TEST: HSV-member: "HSV.val"
     describe('#V = color.V (val) - The value for "VALUE". (not a typo)', () => {
         const V = color.V;
+
         it('should be greater or equal to 0', () => { ok(V >= 0); });
         it('should be lesser or equal to 100', () => { ok(V <= 100); });
     });
@@ -125,6 +128,7 @@ function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
     describe('#rgb = `#color.toRGB()` | HSV to RGB conversion Test', () => {
         it(`It should closely match the expected values: ${rgbArr}`, () => {
             const actualRgb = color.toRGB();
+
             hsvToRGBAssert(actualRgb, rgbArr);
         });
     });

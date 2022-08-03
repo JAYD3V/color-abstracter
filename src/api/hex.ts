@@ -2,7 +2,7 @@
 
 const { digitsX3, digitsX6,  } = regX; */
 
-type RgbObject = { red: number; grn: number; blu: number };
+type RgbObject = { red:number; grn:number; blu:number };
 
 /**
  * **Class: Hex Color** \
@@ -21,24 +21,24 @@ export default class HexColor {
     blu = 0;
 
 
-    get value (){
+    get value() {
         return this.#_color;
     }
 
-    set value (color: string){
+    set value(color:string) {
         this.#_color = color;
     }
 
 
 
-    constructor (color: string) {
+    constructor(color:string) {
         this.#_color = color;
     }
 
-    validateHex (){}
+    validateHex() {}
 
 
-    toSixDigitHex (hexVal: string): RgbObject {
+    toSixDigitHex(hexVal:string):RgbObject {
         let hex = hexVal;
 
         if (digitsX3.test(hexVal)) {
@@ -47,17 +47,17 @@ export default class HexColor {
             hex += hexVal.at(3)!.repeat(2);
         }
 
-        if (digitsX6.test(hexVal)){
+        if (digitsX6.test(hexVal)) {
 
         } else {
             throw new Error('Invalid hex-color');
         }
 
-        return {red: 0, grn: 0, blu: 0};
+        return { red: 0, grn: 0, blu: 0 };
     }
 
 
-    toRGB () {
+    toRGB() {
         return;
     }
 

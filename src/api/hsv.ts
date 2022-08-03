@@ -9,7 +9,7 @@ export type RgbObj = { R:number; G:number; B:number };
 export type HsvObj = { H:number; S:number; V:number };
 
 
-const {abs, trunc, round} = Math;
+const { abs, trunc, round } = Math;
 
 /**
  * HSV Class - Abstracts colors in an HSV-Model format. This class comes with
@@ -20,7 +20,7 @@ export default class HSV {
     V;
     name;
 
-    constructor (name:string, hsv:[number, number, number]) {
+    constructor(name:string, hsv:[number, number, number]) {
         this.name = name;
 
         this.H = this.#coercedValidation_H(hsv[0]);
@@ -48,7 +48,7 @@ export default class HSV {
 
 
 
-    toRGB ():RgbArr {
+    toRGB():RgbArr {
         const H = this.H / 60;
         const S = this.S / 100;
         const V = this.V / 100;

@@ -1,6 +1,6 @@
 // @Nodejs
 import test from 'node:test';
-import { ok as OK } from 'node:assert/strict';
+import {ok as OK} from 'node:assert/strict';
 
 // @Local
 import HexColor from './api/hex.js';
@@ -9,8 +9,7 @@ import regX from './api/lib/hex-validation';
 
 
 
-
-export function generateHexColorTest(testId: string){
+export function generateHexColorTest (testId:string) {
     return test(`RGB TEST | ${testId}`, () => {
         HexColorTest();
     });
@@ -19,15 +18,13 @@ export function generateHexColorTest(testId: string){
 
 
 
-
-function HexColorTest(hexColor: string){
+function HexColorTest (hexColor:string) {
     const color = new HexColor(hexColor);
 }
 
 
 
 
-
-function validateHexArg(){
+function validateHexArg () {
     const color = new HexColor('#ABCDEF');
 }
