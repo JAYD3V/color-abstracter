@@ -104,10 +104,8 @@
         // PAIR (don't separate): "space-before-function-paren"
         "space-before-function-paren": "off",
         "@typescript-eslint/space-before-function-paren": "warn",
-
-
-
         /*
+
         ________________________________________________
 
 
@@ -137,7 +135,6 @@
             }
         ],
 
-        // --------------------------------------------
         "curly": "warn",
         "for-direction": "warn",
         "constructor-super": "error",
@@ -180,19 +177,9 @@
             "warn",
             { "ignoreRestArgs": true }
         ],
-        /*
 
-
-
-
-
-
-
-
-         */
         "eqeqeq": "warn",
         "prefer-const": "warn",
-
         /*
 
 
