@@ -1,97 +1,226 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "tsconfigRootDir": ".",
-    "project": [
-      "./tsconfig.json"
-    ]
-  },
+    "$schema": "https://json.schemastore.org/eslintrc.json",
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
 
-  "ignorePatterns":[".vscode/", ".__scrapbox__/", "dist/", "types/"],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "tsconfigRootDir": ".",
+        "project": ["./tsconfig.json"]
+    },
 
-  "rules": {
-    "constructor-super": "warn",
-    "curly": "warn",
-    "eqeqeq": "warn",
-    "prefer-const": "warn",
-    "no-buffer-constructor": "warn",
-    "no-caller": "warn",
-    "no-case-declarations": "warn",
-    "no-debugger": "warn",
-    "no-duplicate-case": "warn",
-    "no-duplicate-imports": "warn",
-    "no-eval": "warn",
-    "no-async-promise-executor": "warn",
-    "no-extra-semi": "warn",
-    "no-new-wrappers": "warn",
-    "no-redeclare": "off",
-    "no-sparse-arrays": "warn",
-    "no-throw-literal": "warn",
-    "no-unsafe-finally": "warn",
-    "no-unused-labels": "warn",
-    "no-var": "warn",
-    "indent": [
-      "warn",
-      4,
-      {
-        "FunctionExpression": {
-          "parameters": 2
-        },
-        "FunctionDeclaration": {
-          "parameters": 2
-        },
-        "CallExpression": {
-          "arguments": 2
-        },
-        "ArrayExpression": "first",
-        "ObjectExpression": "first",
-        "VariableDeclarator": "first",
-        "ImportDeclaration": "first",
-        "SwitchCase": 1
-      }
-    ],
-    "max-len": [
-      "warn",
-      {
-        "code": 80,
-        "tabWidth": 4,
-        "ignoreStrings": true,
-        "ignoreTemplateLiterals": true,
-        "ignoreRegExpLiterals": true,
-        "ignoreUrls": true,
-        "ignoreComments": false,
-        "ignoreTrailingComments": false
-      }
-    ],
-    "no-multiple-empty-lines": [
-      "warn",
-      {
-        "max": 6,
-        "maxEOF": 1
-      }
-    ],
-    /*
+    "ignorePatterns": [".vscode/", ".__scrapbox__/", "dist/", "types/"],
+
+    "rules": {
+        /*
+        _______________________________________________
 
 
-    ________________________________________________________
-     > RULES ADDED BY: '@typescript-eslint/eslint-plugin' < */
-    "semi": "off",
-    "@typescript-eslint/semi": "warn",
-    "@typescript-eslint/member-delimiter-style": "warn",
-    "@typescript-eslint/naming-convention": [
-      "warn",
-      {
-        "selector": "class",
-        "format": [
-          "PascalCase"
+                * BASIC CODE FORMATTING RULES *
+        _______________________________________________ */
+        "space-infix-ops": "off",
+        "@typescript-eslint/space-infix-ops": "warn",
+
+        "quotes": "off",
+        "@typescript-eslint/quotes": ["warn", "single"],
+
+        "semi": "off",
+        "@typescript-eslint/semi": "warn",
+
+        "brace-style": "off",
+        "@typescript-eslint/brace-style": [
+            "warn",
+            "1tbs",
+            { "allowSingleLine": true }
+        ],
+
+        "comma-dangle": "off",
+        "@typescript-eslint/comma-dangle": ["warn", "never"],
+
+        "max-len": [
+            "warn",
+            {
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true,
+                "ignoreUrls": true
+            }
+        ],
+
+        "indent": [
+            "warn",
+            4,
+            {
+                "FunctionExpression": { "parameters": 2 },
+                "FunctionDeclaration": { "parameters": 2 },
+                "CallExpression": { "arguments": 2 },
+                "ArrayExpression": "first",
+                "ObjectExpression": "first",
+                "VariableDeclarator": "first",
+                "ImportDeclaration": "first",
+                "SwitchCase": 1
+            }
+        ],
+        /*
+
+        ________________________________________________
+
+
+                        * SPACING RULES *
+        ________________________________________________ */
+        "object-curly-spacing": "warn",
+        "block-spacing": "warn",
+        "array-bracket-spacing": ["warn", "never"],
+        "space-in-parens": ["warn", "never"],
+        "func-call-spacing": ["warn", "never"],
+        "arrow-spacing": "warn",
+        "key-spacing": [
+            "warn",
+            { "align": { "beforeColon": true, "afterColon": true } }
+        ],
+
+        "@typescript-eslint/type-annotation-spacing": [
+            "warn",
+            {
+                "before": false,
+                "after": false,
+                "overrides": { "arrow": { "after": true } }
+            }
+        ],
+
+        // PAIR (don't separate): "comma-spacing"
+        "comma-spacing": "off",
+        "@typescript-eslint/comma-spacing": "warn",
+
+        // PAIR (don't separate): "keyword-spacing"
+        "keyword-spacing": "off",
+        "@typescript-eslint/keyword-spacing": "warn",
+
+        // PAIR (don't separate): "space-before-blocks"
+        "space-before-blocks": "off",
+        "@typescript-eslint/space-before-blocks": ["error"],
+
+        // PAIR (don't separate): "space-before-function-paren"
+        "space-before-function-paren": "off",
+        "@typescript-eslint/space-before-function-paren": "warn",
+
+
+
+        /*
+        ________________________________________________
+
+
+                        * LINE RULES *
+        ________________________________________________ */
+        "default-param-last": "warn",
+        "function-paren-newline": "warn",
+        "operator-linebreak": "warn",
+        "eol-last": ["warn", "always"],
+        "linebreak-style": ["warn", "unix"],
+        "padding-line-between-statements": [
+            "warn",
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": "return"
+            },
+            {
+                "blankLine": "always",
+                "prev": ["const", "let", "var"],
+                "next": "*"
+            },
+            {
+                "blankLine": "any",
+                "prev": ["const", "let", "var"],
+                "next": ["const", "let", "var"]
+            }
+        ],
+
+        // --------------------------------------------
+        "curly": "warn",
+        "for-direction": "warn",
+        "constructor-super": "error",
+        /* ___________________________________________
+
+
+                    * BARRED SYNTAX USES *
+        ______________________________________________ */
+        "no-dupe-keys": "error",
+        "no-global-assign": "error",
+        "no-duplicate-case": "error",
+        "no-extra-semi": "error",
+        "no-tabs": "error",
+        "no-const-assign": "error",
+        "no-multiple-empty-lines": ["warn", { "max": 4 }],
+        "no-buffer-constructor": "warn",
+        "no-caller": "warn",
+        "no-case-declarations": "warn",
+        "no-debugger": "warn",
+        "no-duplicate-imports": "warn",
+        "no-eval": "warn",
+        "no-async-promise-executor": "warn",
+        "no-new-wrappers": "warn",
+        "no-redeclare": "off",
+        "no-sparse-arrays": "warn",
+        "no-throw-literal": "warn",
+        "no-unsafe-finally": "warn",
+        "no-unused-labels": "warn",
+        "no-var": "warn",
+        "no-constructor-return": "warn",
+        "no-else-return": "warn",
+        "no-spaced-func": "warn",
+        "no-trailing-spaces": "warn",
+
+        // TS-ESLint Barred Rules
+        "no-useless-constructor": "off",
+        "@typescript-eslint/no-useless-constructor": "warn",
+
+        "@typescript-eslint/no-explicit-any": [
+            "warn",
+            { "ignoreRestArgs": true }
+        ],
+        /*
+
+
+
+
+
+
+
+
+         */
+        "eqeqeq": "warn",
+        "prefer-const": "warn",
+
+        /*
+
+
+
+    *--------------------------------------------------------*
+            TS-ESLint UNIQUE RULES
+    *--------------------------------------------------------*/
+        "@typescript-eslint/prefer-readonly": [
+            "warn",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                }
+            }
+        ],
+
+        "@typescript-eslint/naming-convention": [
+            "warn",
+            {
+                "selector": ["variable", "function"],
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "class",
+                "format": ["PascalCase"]
+            }
         ]
-      }
-    ]
-  }
+    }
 }
