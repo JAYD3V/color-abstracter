@@ -10,7 +10,7 @@
 
 import { AssertionError } from 'node:assert';
 import { fail as FAIL, ok as PASS } from 'node:assert/strict';
-import type { RgbArr } from '../api/hsv.js';
+import type { RgbArr } from '../hsv.js';
 
 
 /**

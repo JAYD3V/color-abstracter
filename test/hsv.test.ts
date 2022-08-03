@@ -16,7 +16,7 @@ import { describe, it } from 'node:test';
 
 // import @Local
 import HSV, { HsvArr, RgbArr } from '../src/api/hsv.js';
-import hsvToRGBAssert from '../src/lib/hsvToRgb-Assertion.js';
+import hsvToRGBAssert from './api/lib/color-assertions.js';
 
 // export
 export default generateHsvTest;
@@ -60,7 +60,7 @@ generateHsvTest('Orange:',  [19,  85, 94],  [240,  99,  36]);
  * @param hsvArr An array of the 3 values: hue, sat & val, that defines the
  *  HSV-modeled color.
  * @return Returns the dynamically generated test. */
-function generateHsvTest(name: string, hsvArr: HsvArr, rgbArr:RgbArr){
+function generateHsvTest (name: string, hsvArr: HsvArr, rgbArr:RgbArr){
     const desc = 'HSV CLASS TEST\n'
                + `\t  COLOR'S NAME:  ${name}\n`
                + `\t   INITIAL HSV:  ${hsvArr}\n`
@@ -72,7 +72,7 @@ function generateHsvTest(name: string, hsvArr: HsvArr, rgbArr:RgbArr){
 
 
 /** HSV Class Test */
-function hsvTest(name: string, hsvArr: HsvArr, rgbArr: RgbArr){
+function hsvTest (name: string, hsvArr: HsvArr, rgbArr: RgbArr){
     // Validate "name" Argument
     describe(`#name = ${name} | HSV Constructor Arg/Param`, () => {
         it('should exist', () => { ok(name); });

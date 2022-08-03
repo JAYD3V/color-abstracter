@@ -1,27 +1,70 @@
-class HexColor{
-    RGB = { red: 0, grn: 0, blu: 0 };
+/* import
 
-    constructor(hexStr: string){
-        const len = hexStr.length;
+const { digitsX3, digitsX6,  } = regX; */
 
-        if (hexStr.at(0) !== '#'){
-            throw new Error('HexStr arg must start with a number-sign -> #');
-        }
+type RgbObject = { red: number; grn: number; blu: number };
 
-        if (len !== 3 && len !== 4 && len !== 6 && len !== 8){
-            console.log('');
-        }
+/**
+ * **Class: Hex Color** \
+ * _Abstracts RGB Modeled colors in Hexadecimal format._
+ * ---------------------------------------------------------
+ * @method parseHexColor
+ * @member hexValue Original hexadecimal color value
+ * @member red red value in sRGB format
+ * @member grn green value in sRGB format
+ * @member blu blue value in sRGB format
+ * ---------------------------------------------------------  */
+export default class HexColor {
+    #_color;
+    red = 0;
+    grn = 0;
+    blu = 0;
 
-        switch (hexStr.length){
-            case 3:
-            case 6:
-            case 4:
-            case 8:
 
-            default:
-                throw new Error('HexColor arg has an invalid amount of digits');
-        }
-
-        // parseInt(hexStr, 10);
+    get value (){
+        return this.#_color;
     }
+
+    set value (color: string){
+        this.#_color = color;
+    }
+
+
+
+    constructor (color: string) {
+        this.#_color = color;
+    }
+
+    validateHex (){}
+
+
+    toSixDigitHex (hexVal: string): RgbObject {
+        let hex = hexVal;
+
+        if (digitsX3.test(hexVal)) {
+            hex  = hexVal.at(1)!.repeat(2);
+            hex += hexVal.at(2)!.repeat(2);
+            hex += hexVal.at(3)!.repeat(2);
+        }
+
+        if (digitsX6.test(hexVal)){
+
+        } else {
+            throw new Error('Invalid hex-color');
+        }
+
+        return {red: 0, grn: 0, blu: 0};
+    }
+
+
+    toRGB () {
+        return;
+    }
+
+
+    // TODO: Write method `toThreeDigits(){}`
+    // TODO: Write method `toFourDigits(){}`
+    // TODO: Write method `toSixDigits(){}`
+    // TODO: Write method `toEightDigits(){}`
+    // TODO: Write method `toSixDigits(){}`
 }
