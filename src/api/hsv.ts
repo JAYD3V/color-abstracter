@@ -79,19 +79,3 @@ export default class HSV {
         return rgb;
     }
 }
-
-//             RED   GRN   BLU      HUE  SAT  VAL
-// ||-------------------------||-----------------||
-// || VIOLET:  122|   54|  225||    264|  76|  88||
-// ||   CYAN:   37|  244|  250||    182|  85|  98||
-// ||   LIME:  142|  227|   45||     88|  80|  89||
-// || ORANGE:  250|  168|   37||     37|  85|  98||
-// ||CRIMSON:  240|   36|  123||    334|  85|  94||
-// ||-------------------------||-----------------||
-
-
-const rgb = new HSV('Pseudo Color 4 Testing', [264, 76, 88]).toRGB();
-
-console.log('Printing Result: ');
-
-console.log(rgb);
