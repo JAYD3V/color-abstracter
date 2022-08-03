@@ -9,8 +9,6 @@ export type RgbObj = { R:number; G:number; B:number };
 export type HsvObj = { H:number; S:number; V:number };
 
 
-
-
 const {abs, trunc, round} = Math;
 
 /**
