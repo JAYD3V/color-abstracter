@@ -15,6 +15,28 @@ import { fail, ok, strictEqual as equal } from 'node:assert/strict';
 import type { RgbArr } from '../hsv.js';
 
 
+
+
+/**
+ * **Assertion Error Generator** Returns a function that generates assertion
+ * errors that is pre-set with the actual value being tested, and the value that
+ * it is expected to be. The returned function takes a message argument that
+ * prints if the AssertionError is thrown.
+ * @param actual
+ *      A value of an entity that you want to test during runtime.
+ * @param expected
+ *      The value that you expect the actual parameter to be passed. */
+function assertionErrorGenerator(actual:unknown, expected:unknown) {
+    return (message:string) => new AssertionError({
+        message  : message,
+        expected : expected,
+        actual   : actual
+    });
+}
+
+
+
+
 /**
  * ### HSV to RGB Assertion
  * ---------------------------------------------------------------------------
@@ -32,7 +54,13 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
     for (let i = 0; i < 3; i++) {
         const actual = actualRgb[i];
         const expected = expectedRgb[i];
-        const color = (i === 0) ? 'Red' : (i === 1) ? 'Green' : 'Blue';
+
+        let culprit = 'The actual RGB value "red"';
+
+        if (i === 1) { culprit = 'The actual RGB value "green"'; }
+        if (i === 2) { culprit = 'The actual RGB value "blue"'; }
+
+        const genAssertErr = assertionErrorGenerator(actual, expected);
 
         if (!expected) {
             throw new Error(
