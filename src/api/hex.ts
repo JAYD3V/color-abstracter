@@ -1,8 +1,15 @@
-/* import
-
-const { digitsX3, digitsX6,  } = regX; */
 
 type RgbObject = { red:number; grn:number; blu:number };
+
+
+
+
+const patt = {
+    hexColor      : /^#([0-9|A-F]{3}){1,2}$/i, // 3 & 6 digit hex-colors
+    hexColorLong  : /^#([0-9|A-F]{6})$/i, // 6 Digit hex (standard)
+    hexColorShort : /^#([0-9|A-F]{3})$/i  // 3 Digit hex (short version)
+};
+
 
 /**
  * **Class: Hex Color** \
@@ -16,10 +23,14 @@ type RgbObject = { red:number; grn:number; blu:number };
  * ---------------------------------------------------------  */
 export default class HexColor {
     #_color;
-    red = 0;
-    grn = 0;
-    blu = 0;
 
+    rgb:RgbObject = {
+        red : 0,
+        grn : 0,
+        blu : 0
+    };
+
+    opacity = 100;
 
     get value() {
         return this.#_color;
@@ -29,19 +40,17 @@ export default class HexColor {
         this.#_color = color;
     }
 
-
-
     constructor(color:string) {
         this.#_color = color;
     }
 
     validateHex() {}
 
-
     toSixDigitHex(hexVal:string):RgbObject {
         let hex = hexVal;
 
-        if (digitsX3.test(hexVal)) {
+
+        if (patt.hexColor3.test(hexVal)) {
             hex  = hexVal.at(1)!.repeat(2);
             hex += hexVal.at(2)!.repeat(2);
             hex += hexVal.at(3)!.repeat(2);
