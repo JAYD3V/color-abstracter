@@ -1,5 +1,5 @@
 import { AssertionError } from 'assert';
-import { ok as OK, fail as FAIL } from 'assert/strict';
+import { ok, fail, strictEqual as equal } from 'assert/strict';
 
 const patt = {
     hexColor     : /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i,
@@ -11,6 +11,7 @@ const patt = {
     hexColor3    : /^#([0-9|A-F]{3})$/i
 };
 
+const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
 
 export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
     const { actual, expected } = hexColor;
@@ -20,9 +21,10 @@ export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
     });
 
     if (!expected) { SyntaxError('Expected "hexColor" cannot be undefined!'); }
-    if (!actual) { FAIL(e('Actual "hexColor" is undefined')); }
-    if (!patt.hexColor.test(actual)) {
-        FAIL(e('Actual "hexColor" is not valid'));
 
-    }
+    if (!actual) { fail(e('hexColor is undefined')); }
+
+    if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
+
+    equal(actual, expected, 'Hex-color is not what it was expected to be');
 }

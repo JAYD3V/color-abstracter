@@ -122,6 +122,5 @@ export function hexColorEquals(hexColor:{ actual:string, expected:string }) {
 
     if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
 
-
     equal(actual, expected, 'Hex-color is not what it was expected to be');
 }
