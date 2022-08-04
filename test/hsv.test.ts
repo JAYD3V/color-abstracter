@@ -88,9 +88,8 @@ function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
         it('should be an array', () => { ok(Array.isArray(hsvArr)); });
         it('should have 3 items', () => { equal(hsvArr.length, 3); });
     });
-
-
     /*
+
 
     BEGIN TESTING OF HSV CLASS */
     const color = new HSV(name, hsvArr);
