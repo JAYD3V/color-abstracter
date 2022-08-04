@@ -59,13 +59,13 @@ export default class HSV {
             const X = C * (1 - abs(H % 2 - 1));
 
             switch (trunc(H)) {
-                case 0: return [C, X, 0];
-                case 1: return [X, C, 0];
-                case 2: return [0, C, X];
-                case 3: return [0, X, C];
-                case 4: return [X, 0, C];
+            case 0: return [C, X, 0];
+            case 1: return [X, C, 0];
+            case 2: return [0, C, X];
+            case 3: return [0, X, C];
+            case 4: return [X, 0, C];
 
-                default: return [C, 0, X];
+            default: return [C, 0, X];
             }
         };
 
