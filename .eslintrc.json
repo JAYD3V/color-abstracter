@@ -28,19 +28,14 @@
         "semi": "off",
         "@typescript-eslint/semi": "warn",
 
-        "brace-style": "off",
-        "@typescript-eslint/brace-style": [
-            "warn",
-            "1tbs",
-            { "allowSingleLine": true }
-        ],
-
         "comma-dangle": "off",
         "@typescript-eslint/comma-dangle": ["warn", "never"],
 
         "max-len": [
             "warn",
             {
+                "code": 85,
+                "tabWidth": 2,
                 "ignoreStrings": true,
                 "ignoreTemplateLiterals": true,
                 "ignoreRegExpLiterals": true,
@@ -52,14 +47,13 @@
             "warn",
             4,
             {
-                "FunctionExpression": { "parameters": 2 },
-                "FunctionDeclaration": { "parameters": 2 },
-                "CallExpression": { "arguments": 2 },
+                "FunctionExpression": { "parameters": "first" },
+                "FunctionDeclaration": { "parameters": "first" },
+                "CallExpression": { "arguments": "first" },
                 "ArrayExpression": "first",
                 "ObjectExpression": "first",
                 "VariableDeclarator": "first",
-                "ImportDeclaration": "first",
-                "SwitchCase": 1
+                "ImportDeclaration": "first"
             }
         ],
         /*
@@ -74,12 +68,14 @@
         "space-in-parens": ["warn", "never"],
         "func-call-spacing": ["warn", "never"],
         "arrow-spacing": "warn",
+        // SURGEON GEJON
         "object-curly-spacing": "off",
         "@typescript-eslint/object-curly-spacing": [
             "warn",
             "always",
             { "arraysInObjects": false, "objectsInObjects": false }
         ],
+
         "key-spacing": [
             "warn",
             { "align": { "beforeColon": true, "afterColon": true } }
@@ -117,7 +113,6 @@
                         * LINE RULES *
         ________________________________________________ */
         "default-param-last": "warn",
-        "function-paren-newline": "warn",
         "operator-linebreak": "warn",
         "eol-last": ["warn", "always"],
         "linebreak-style": ["warn", "unix"],
@@ -127,11 +122,6 @@
                 "blankLine": "always",
                 "prev": "*",
                 "next": "return"
-            },
-            {
-                "blankLine": "always",
-                "prev": ["const", "let", "var"],
-                "next": "*"
             },
             {
                 "blankLine": "any",
@@ -178,20 +168,17 @@
         "no-useless-constructor": "off",
         "@typescript-eslint/no-useless-constructor": "warn",
 
-        "@typescript-eslint/no-explicit-any": [
-            "warn",
-            { "ignoreRestArgs": true }
-        ],
+        "@typescript-eslint/no-explicit-any": [ "warn", { "ignoreRestArgs": true } ],
 
         "eqeqeq": "warn",
         "prefer-const": "warn",
-        /*
+        /**
 
 
 
-    *--------------------------------------------------------*
-            TS-ESLint UNIQUE RULES
-    *--------------------------------------------------------*/
+        *--------------------------------------------------------*
+            * TS-ESLint Unique Rules *
+        *--------------------------------------------------------* */
         "@typescript-eslint/prefer-readonly": [
             "warn",
             {
