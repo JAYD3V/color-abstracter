@@ -1,18 +1,28 @@
-/** *************************************************************************
-  * @file "...src/test/lib/hsvToRgb-Assertion.ts"
-  * @fileoverview File houses an assertion for checking hsv to rgb conversions
-  * @author Andrew J Chambers Jr (tagname: JAYD3V)
-  * @repo Https://GitHub.com/JAYD3V/J-Color
-  * @license Apache-2.0
-  * @JAYD3V
-  *************************************************************************** */
+/**
+ *  COPYRIGHT 2022, A Jay Chambers
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License"); you may
+ *  not use this file except in compliance with the License. You may obtain
+ *  a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *******************************************************************************
+ * @file "...src/test/lib/hsvToRgb-Assertion.ts"
+ * @fileoverview Custom assertion library that is specifically for this project
+ * @author Andrew J Chambers Jr (tagname: JAYD3V)
+ * @contact W3Dojo@Gmail.com
+ * @issues https://github.com/JAYD3V/color-abstracter/issues
+ ******************************************************************************/
 
-// @NodeJS
-import { AssertionError } from 'node:assert';
-import { fail, ok, strictEqual as equal } from 'node:assert/strict';
 
-// @Local-project (Type Imports)
-import type { RgbArr } from '../hsv.js';
+
+
+import {
+    strictEqual as equal,
+    AssertionError,
+    fail,
+    ok
+} from 'node:assert/strict';
+
+import type { RgbArr } from '../hsv.js'; // TYPE IMPORT
 
 
 
@@ -40,51 +50,49 @@ function assertionErrorGenerator(actual:unknown, expected:unknown) {
 /**
  * ### HSV to RGB Assertion
  * ---------------------------------------------------------------------------
- * The Node assertion lib requires help to test HSV to RGB conversions,
- * this fn is that help. Because HSV to RGB conversions round to the nearest
- * integer, they are often off by (+/- 1). This function accounts for that
- * small difference when comparing the Resulting RGB array with the Expected
- * Array.
+ * Node assertions are unable to test `'RGB'` to `'HSV'` conversions w/o a bit
+ * of extra code; this is that code. Because HSV to RGB conversions round to the
+ * nearest integer, they are often off by (+/- 1). This function is designed to
+ * check for the small amount of difference, thus making it possible to test the
+ * _"RGB -to- HSV"_ conversions.
  * @param actualRgb
  *      Actual RGB array returned from an HSV to RGB conversion.
  * @param expectedRgb
  *      The RGB array you are expecting the conversion to return
- */
+ * */
 export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
     for (let i = 0; i < 3; i++) {
         const actual = actualRgb[i];
         const expected = expectedRgb[i];
 
-        let culprit = 'The actual RGB value "red"';
+        let culprit = 'The rgb value "red"';
 
-        if (i === 1) { culprit = 'The actual RGB value "green"'; }
-        if (i === 2) { culprit = 'The actual RGB value "blue"'; }
+        if (i === 1) { culprit = 'The rgb value "green"'; }
+        if (i === 2) { culprit = 'The rgb value "blue"'; }
 
         const genAssertErr = assertionErrorGenerator(actual, expected);
 
         if (!expected) {
-            throw new Error(
-                'hsvToRgbAssertion parameter "ExpectedRGB" is undefined');
+            throw new Error('ExpectedRgb argument is undefined');
         }
 
-        const error = (mesg:string) => new AssertionError({
-            message  : mesg,
-            expected : expected,
-            actual   : actual
-        });
+        if (!actual) {
+            const e = genAssertErr(`${culprit} is undefined`);
+            fail(e);
+        }
+        if (actual > 255) {
+            const e = genAssertErr(`${culprit} cannot be greater than 255`);
+            fail(e);
+        }
+        if (actual < 0) {
+            const e = genAssertErr(`${culprit} cannot be less than 0`);
+            fail(e);
+        }
 
-        const offender = `RGB[${color}]`;
-
-        if (!actual) { fail(error(`${offender} is undefined`)); }
-        if (actual > 255) { fail(error(`${offender} is greater than 255`)); }
-        if (actual < 0) { fail(error(`${offender} is 'lesser' than 0`)); }
-
-        if (actual !== expected &&
-                actual + 1 !== expected &&
-                actual - 1 !== expected) {
-            const msg = `ASSERTION FAILED! ${offender}`;
-
-            fail(error(`${msg} CONTAINS AN UNEXPECTED VALUE`));
+        if (actual !== expected && actual + 1 !== expected &&
+            actual - 1 !== expected) {
+            const e = genAssertErr(`${culprit} is not what it was expected to be!`);
+            fail(e);
         }
     }
 
@@ -94,9 +102,9 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
 
 
 
-const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
 
 export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
+    const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
     const { actual, expected } = hexColor;
 
     const e = (mesg:string) => new AssertionError({
