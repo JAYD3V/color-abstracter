@@ -16,10 +16,13 @@ import { describe, it } from 'node:test';
 
 // import @Local
 import HSV, { HsvArr, RgbArr } from '../src/api/hsv.js';
-import hsvToRGBAssert from './api/lib/color-assertions.js';
+import hsvToRGBAssert from './api/lib/color-assertion-lib.js';
 
 // export
 export default generateHsvTest;
+
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /*
 
 
