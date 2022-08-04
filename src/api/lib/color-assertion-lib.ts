@@ -107,8 +107,9 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
 
 
 
-export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
+export function hexColorEquals(hexColor:{ actual:string, expected:string }) {
     const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
+
     const { actual, expected } = hexColor;
 
     const e = (mesg:string) => new AssertionError({
@@ -116,8 +117,11 @@ export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
     });
 
     if (!expected) { SyntaxError('Expected "hexColor" cannot be undefined!'); }
+
     if (!actual) { fail(e('hexColor is undefined')); }
+
     if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
+
 
     equal(actual, expected, 'Hex-color is not what it was expected to be');
 }
