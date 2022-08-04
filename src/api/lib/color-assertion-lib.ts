@@ -89,15 +89,19 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
             fail(e);
         }
 
-        if (actual !== expected && actual + 1 !== expected &&
-            actual - 1 !== expected) {
-            const e = genAssertErr(`${culprit} is not what it was expected to be!`);
+        const actualIsExpected = Boolean(
+            actual !== expected &&
+            actual + 1 !== expected &&
+            actual - 1 !== expected);
+
+        if (actualIsExpected) {
+            ok(true, 'ASSERTION PASSED! RGB Array contains the expected value');
+        } else {
+            const e = genAssertErr(`ASSERTION FAILED! ${culprit} is not the ` +
+                    'value that it was expected to be.');
             fail(e);
         }
     }
-
-    ok(true, 'hsvToRgbAssert Passed! The two arrays closely match!\n' +
-        `Expected RGB: [${expectedRgb}]\nActual RGB: [${actualRgb}]`);
 }
 
 
