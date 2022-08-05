@@ -25,3 +25,4 @@ types/
 # PERSONAL DEV DIRECTORIES (Should never be committed)
 .__scrapbox__/
 .D3V/
+cspell.json
