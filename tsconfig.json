@@ -2,13 +2,13 @@
    "$schema": "https://json.schemastore.org/tsconfig",
    "extends": "@tsconfig/node16-strictest/tsconfig.json",
 
-   "include": ["src/**/*", "test/**/*"],
+   "include": ["src/**/*", "src/test/**/*"],
    "exclude": [ "node_modules/", "types/", "dist/", ".D3V/" ],
 
    "compilerOptions": {
       "lib": ["ES2022"],
       "outDir": "dist/",
-      "rootDirs": ["src/", "test/"],
+      "rootDir": "src",
       "declarationDir": "types/",
       "declaration": true,
       "declarationMap": true,
