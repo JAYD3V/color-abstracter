@@ -116,18 +116,41 @@
         "operator-linebreak": "warn",
         "eol-last": ["warn", "always"],
         "linebreak-style": ["warn", "unix"],
+
         "padding-line-between-statements": [
             "warn",
+
+
+            {
+                "blankLine": "always",
+                "prev": ["*"],
+                "next": ["function"]
+            },
+            {
+                "blankLine": "always",
+                "prev": ["function"],
+                "next": ["*"]
+            },
             {
                 "blankLine": "always",
                 "prev": "*",
                 "next": "return"
             },
+
+            {
+                "blankLine": "always",
+                "prev": ["const", "let", "var"],
+                "next": "*"
+            },
+
             {
                 "blankLine": "any",
+
                 "prev": ["const", "let", "var"],
                 "next": ["const", "let", "var"]
             }
+
+
         ],
 
         "curly": "warn",
@@ -144,7 +167,7 @@
         "no-extra-semi": "error",
         "no-tabs": "error",
         "no-const-assign": "error",
-        "no-multiple-empty-lines": ["warn", { "max": 4 }],
+        "no-multiple-empty-lines": ["warn", { "max": 8 }],
         "no-buffer-constructor": "warn",
         "no-caller": "warn",
         "no-case-declarations": "warn",
@@ -168,7 +191,10 @@
         "no-useless-constructor": "off",
         "@typescript-eslint/no-useless-constructor": "warn",
 
-        "@typescript-eslint/no-explicit-any": [ "warn", { "ignoreRestArgs": true } ],
+        "@typescript-eslint/no-explicit-any": [
+            "warn",
+            { "ignoreRestArgs": true }
+        ],
 
         "eqeqeq": "warn",
         "prefer-const": "warn",
