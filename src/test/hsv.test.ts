@@ -5,7 +5,10 @@
  * use this file except in compliance with the License. You may obtain a copy
  * of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0   */
+ * http://www.apache.org/licenses/LICENSE-2.0 */
+
+
+
 
 // TODO: Generate additional static tests
 // ADD: Automated test when toHSV() method is added to RGB class.
@@ -15,8 +18,8 @@ import { ok, strictEqual as equal } from 'node:assert/strict';
 import { describe, it } from 'node:test';
 
 // import @Local
-import HSV, { HsvArr, RgbArr } from '../src/api/hsv.js';
-import hsvToRGBAssert from './api/lib/color-assertion-lib.js';
+import HSV, { HsvArr, RgbArr } from '../api/hsv.js';
+import hsvToRGBAssert from '../api/lib/color-assert.js';
 
 // export
 export default generateHsvTest;
@@ -62,7 +65,8 @@ generateHsvTest('Orange:',  [19,  85, 94],  [240,  99,  36]);
  * @param name of the color.
  * @param hsvArr An array of the 3 values: hue, sat & val, that defines the
  *  HSV-modeled color.
- * @return Returns the dynamically generated test. */
+ * @return Returns the dynamically generated test.
+*/
 function generateHsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
     const desc = 'HSV CLASS TEST\n' +
                `\t  COLOR'S NAME:  ${name}\n` +
@@ -74,6 +78,9 @@ function generateHsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
 
 
 
+
+
+
 /** HSV Class Test */
 function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
     // Validate "name" Argument
@@ -82,27 +89,27 @@ function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
         it('should be a string', () => { equal(typeof name, 'string'); });
     });
 
-    // Validate "hsvArr" Argument
+
+    // VALIDATION-TEST | Argument: "hsvArr"
     describe(`#hsvArr = ${hsvArr} | HSV Constructor Arg/Param`, () => {
         it('should exist', () => { ok(hsvArr); });
         it('should be an array', () => { ok(Array.isArray(hsvArr)); });
         it('should have 3 items', () => { equal(hsvArr.length, 3); });
     });
-    /*
 
 
-    BEGIN TESTING OF HSV CLASS */
+
+    // TEST | HSV Instantiation
     const color = new HSV(name, hsvArr);
 
-    // TEST: HSV Instantiation
     describe('#color = new HSV(#name, #hsvArr);', () => {
-        // Presence-check
         it('HSV instance #color should exist', () => { ok(color); });
-        // Type-check
         it('should be HSV instance', () => { ok(color instanceof HSV); });
     });
 
-    // TEST: HSV-member: "HSV.hue"
+
+
+    // TEST | HSV Property: "HSV.hue"
     describe('#H = color.H (hue) |  The value for "HUE".', () => {
         const H = color.H;
 
@@ -110,7 +117,9 @@ function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
         it('should be lesser or equal to 360', () => { ok(H <= 360); });
     });
 
-    // TEST: HSV-member: "HSV.sat"
+
+
+    // TEST | HSV Property: "HSV.sat"
     describe('#S = color.S (sat)  |  The value for "SATURATION"', () => {
         const S = color.S;
 
@@ -118,7 +127,9 @@ function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
         it('should be lesser or equal to 100', () => { ok(S <= 100); });
     });
 
-    // TEST: HSV-member: "HSV.val"
+
+
+    // TEST | HSV Property: "HSV.val"
     describe('#V = color.V (val) - The value for "VALUE". (not a typo)', () => {
         const V = color.V;
 
@@ -126,7 +137,9 @@ function hsvTest(name:string, hsvArr:HsvArr, rgbArr:RgbArr) {
         it('should be lesser or equal to 100', () => { ok(V <= 100); });
     });
 
-    // TEST: HSV func-member "HSV.toRGB()" (Implements HSV 2 RGB Algorithm)
+
+
+    // TEST | HSV Func-member: "HSV.toRGB()"
     describe('#rgb = `#color.toRGB()` | HSV to RGB conversion Test', () => {
         it(`It should closely match the expected values: ${rgbArr}`, () => {
             const actualRgb = color.toRGB();
