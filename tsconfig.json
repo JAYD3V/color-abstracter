@@ -14,7 +14,6 @@
       "declarationMap": true,
       "sourceMap": true,
       "inlineSources": true,
-      // The checks below can be preformed by ESLint &/or TSC
       "noUnusedLocals": false,
       "noUnusedParameters": false
    }
