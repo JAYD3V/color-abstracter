@@ -2,7 +2,7 @@
    "$schema": "https://json.schemastore.org/tsconfig",
    "extends": "@tsconfig/node16-strictest/tsconfig.json",
 
-   "include": ["src/**/*", "test/**/*", "dist/lib/hsvToRgb-Assertion.ts"],
+   "include": ["src/**/*", "test/**/*"],
    "exclude": [ "node_modules/", "types/", "dist/", ".D3V/" ],
 
    "compilerOptions": {
