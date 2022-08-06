@@ -7,12 +7,15 @@ package-lock.json
 .npmignore
 .npmrc
 
-# Environment Configuration
+# CONFIGURATION FILES
 .vscode/settings.json
+.vscode/launch.json
+.vscode/cspell.json
 .editorconfig
+cspell.json
 
 # TypeScript Emitted Documents
-dist/
+build/
 types/
 *.js
 *.js.map
@@ -23,6 +26,5 @@ types/
 **/sandbox.ts
 
 # PERSONAL DEV DIRECTORIES (Should never be committed)
-.__scrapbox__/
-.D3V/
-cspell.json
+.DEV/
+.TRASH/

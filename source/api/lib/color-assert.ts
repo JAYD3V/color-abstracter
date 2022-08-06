@@ -25,7 +25,8 @@
 
 
 
-import {
+import
+{
     strictEqual as equal,
     AssertionError,
     fail,
@@ -46,7 +47,8 @@ import type { RgbArr } from '../hsv.js'; // TYPE IMPORT
  *      A value of an entity that you want to test during runtime.
  * @param expected
  *      The value that you expect the actual parameter to be passed. */
-function assertionErrorGenerator(actual:unknown, expected:unknown) {
+function assertionErrorGenerator(actual:unknown, expected:unknown)
+{
     return (message:string) => new AssertionError({
         message  : message,
         expected : expected,
@@ -70,7 +72,8 @@ function assertionErrorGenerator(actual:unknown, expected:unknown) {
  * @param expectedRgb
  *      The RGB array you are expecting the conversion to return
  * */
-export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
+export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr)
+{
     for (let i = 0; i < 3; i++) {
         const actual = actualRgb[i];
         const expected = expectedRgb[i];
@@ -88,16 +91,19 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
 
         if (!actual) {
             const e = genAssertErr(`${culprit} is undefined`);
+
             fail(e);
         }
 
         if (actual > 255) {
             const e = genAssertErr(`${culprit} cannot be greater than 255`);
+
             fail(e);
         }
 
         if (actual < 0) {
             const e = genAssertErr(`${culprit} cannot be less than 0`);
+
             fail(e);
         }
 
@@ -110,7 +116,7 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
             ok(true, 'ASSERTION PASSED! RGB Array contains the expected value');
         } else {
             const e = genAssertErr(`ASSERTION FAILED! ${culprit} is not the ` +
-                    'value that it was expected to be.');
+                'value that it was expected to be.');
 
             fail(e);
         }
@@ -120,7 +126,8 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr) {
 
 
 
-export function hexColorEquals(hexColor:{ actual:string, expected:string }) {
+export function hexColorEquals(hexColor:{ actual:string, expected:string; })
+{
     const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
 
     const { actual, expected } = hexColor;

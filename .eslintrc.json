@@ -10,7 +10,13 @@
         "project": ["./tsconfig.json"]
     },
 
-    "ignorePatterns": [".vscode/", ".__scrapbox__/", "dist/", "types/"],
+    "ignorePatterns": [
+        ".DEV/",
+        ".TRASH/",
+        "types/",
+        "out/",
+        "build/"
+    ],
 
     "rules": {
         /*
@@ -47,8 +53,8 @@
         "max-len": [
             "warn",
             {
-                "code": 85,
-                "tabWidth": 2,
+                "code": 90,
+                "tabWidth": 4,
                 "ignoreStrings": true,
                 "ignoreTemplateLiterals": true,
                 "ignoreRegExpLiterals": true,
@@ -181,7 +187,6 @@
         "no-var": "error",
         "no-throw-literal": "error",
 
-
         // Barred Syntax @ Level: "WARN"
         /* ___________________________________________
 
@@ -228,19 +233,23 @@
                     "requireLast": true
                 }
             }
-        ],
-
-        "@typescript-eslint/naming-convention": [
+        ]
+        /*
+         "@typescript-eslint/naming-convention": [
             "warn",
             {
                 "selector": ["variable", "function"],
-                "format": ["camelCase"],
+                "format": ["camelCase", "UPPER_CASE"],
                 "leadingUnderscore": "allow"
             },
             {
                 "selector": "class",
                 "format": ["PascalCase"]
+            },
+            {
+                "selector": ["classProperty", "classMethod"],
+                "format": ["camelCase", "UPPER_CASE"]
             }
-        ]
+        ] */
     }
 }

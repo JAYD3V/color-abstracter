@@ -20,11 +20,14 @@ export function assertHexColor(hexColor:{ expected:string, actual:string; }) {
         expected: expected, actual: actual, message: mesg
     });
 
-    if (!expected) { SyntaxError('Expected "hexColor" cannot be undefined!'); }
+    if (!expected) {
+        SyntaxError('Expected "hexColor" cannot be undefined!'); }
 
-    if (!actual) { fail(e('hexColor is undefined')); }
+    if (!actual) {
+        fail(e('hexColor is undefined')); }
 
-    if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
+    if (!hexClrPatt.test(actual)) {
+        fail(e('HexColor is invalid')); }
 
     equal(actual, expected, 'Hex-color is not what it was expected to be');
 }
