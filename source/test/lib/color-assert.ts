@@ -27,13 +27,13 @@
 
 import
 {
-    strictEqual as equal,
-    AssertionError,
-    fail,
-    ok
+   strictEqual as equal,
+   AssertionError,
+   fail,
+   ok
 } from 'node:assert/strict';
 
-import type { RgbArr } from '../hsv.js'; // TYPE IMPORT
+type RgbArr = [number, number, number];
 
 
 
@@ -49,11 +49,11 @@ import type { RgbArr } from '../hsv.js'; // TYPE IMPORT
  *      The value that you expect the actual parameter to be passed. */
 function assertionErrorGenerator(actual:unknown, expected:unknown)
 {
-    return (message:string) => new AssertionError({
-        message  : message,
-        expected : expected,
-        actual   : actual
-    });
+   return (message:string) => new AssertionError({
+      message  : message,
+      expected : expected,
+      actual   : actual
+   });
 }
 
 
@@ -67,60 +67,65 @@ function assertionErrorGenerator(actual:unknown, expected:unknown)
  * nearest integer, they are often off by (+/- 1). This function is designed to
  * check for the small amount of difference, thus making it possible to test the
  * _"RGB -to- HSV"_ conversions.
- * @param actualRgb
+ * @param rgbActual
  *      Actual RGB array returned from an HSV to RGB conversion.
- * @param expectedRgb
+ * @param rgbExpected
  *      The RGB array you are expecting the conversion to return
  * */
-export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr)
+export default function hsvToRgbAssert(rgbActual:RgbArr, rgbExpected:RgbArr)
 {
-    for (let i = 0; i < 3; i++) {
-        const actual = actualRgb[i];
-        const expected = expectedRgb[i];
+   for (let i = 0; i < 3; i++) {
+      const actual = rgbActual[i];
+      const expected = rgbExpected[i];
+      const genAssertErr = assertionErrorGenerator(actual, expected);
 
-        let culprit = 'The rgb value "red"';
 
-        if (i === 1) { culprit = 'The rgb value "green"'; }
-        if (i === 2) { culprit = 'The rgb value "blue"'; }
+      let culprit = '';
 
-        const genAssertErr = assertionErrorGenerator(actual, expected);
+      switch (i) {
+         default: culprit = 'The rgb value "red"';
+         case 2: culprit = 'The rgb value "green"';
+         case 3: culprit = 'The rgb value "blue"';
+      }
 
-        if (!expected) {
-            throw new Error('ExpectedRgb argument is undefined');
-        }
 
-        if (!actual) {
-            const e = genAssertErr(`${culprit} is undefined`);
 
-            fail(e);
-        }
+      if (!expected) {
+         throw new Error('ExpectedRgb argument is undefined');
+      }
 
-        if (actual > 255) {
-            const e = genAssertErr(`${culprit} cannot be greater than 255`);
+      if (!actual) {
+         const e = genAssertErr(`${culprit} is undefined`);
 
-            fail(e);
-        }
+         fail(e);
+      }
 
-        if (actual < 0) {
-            const e = genAssertErr(`${culprit} cannot be less than 0`);
+      if (actual > 255) {
+         const e = genAssertErr(`${culprit} cannot be greater than 255`);
 
-            fail(e);
-        }
+         fail(e);
+      }
 
-        const actualIsExpected = Boolean(
+      if (actual < 0) {
+         const e = genAssertErr(`${culprit} cannot be less than 0`);
+
+         fail(e);
+      }
+
+      const actualIsExpected = Boolean(
             actual !== expected &&
-            actual + 1 !== expected &&
-            actual - 1 !== expected);
+         actual + 1 !== expected &&
+         actual - 1 !== expected);
 
-        if (actualIsExpected) {
-            ok(true, 'ASSERTION PASSED! RGB Array contains the expected value');
-        } else {
-            const e = genAssertErr(`ASSERTION FAILED! ${culprit} is not the ` +
-                'value that it was expected to be.');
+      if (!actualIsExpected) {
+         ok(true, 'ASSERTION PASSED! RGB Array contains the expected value');
+      } else {
+         const e = genAssertErr(`ASSERTION FAILED! RGB Value ${culprit} is ` +
+            `${actual}, but it should have been: ${expected}`);
 
-            fail(e);
-        }
-    }
+         fail(e);
+      }
+   }
 }
 
 
@@ -128,19 +133,19 @@ export default function hsvToRgbAssert(actualRgb:RgbArr, expectedRgb:RgbArr)
 
 export function hexColorEquals(hexColor:{ actual:string, expected:string; })
 {
-    const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
+   const hexClrPatt = /^#([0-9|A-F]{3,4}|[0-9|A-F]{6}|[0-9|A-F]{8})$/i;
 
-    const { actual, expected } = hexColor;
+   const { actual, expected } = hexColor;
 
-    const e = (mesg:string) => new AssertionError({
-        expected: expected, actual: actual, message: mesg
-    });
+   const e = (mesg:string) => new AssertionError({
+      expected: expected, actual: actual, message: mesg
+   });
 
-    if (!expected) { SyntaxError('Expected "hexColor" cannot be undefined!'); }
+   if (!expected) { SyntaxError('Expected "hexColor" cannot be undefined!'); }
 
-    if (!actual) { fail(e('hexColor is undefined')); }
+   if (!actual) { fail(e('hexColor is undefined')); }
 
-    if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
+   if (!hexClrPatt.test(actual)) { fail(e('HexColor is invalid')); }
 
-    equal(actual, expected, 'Hex-color is not what it was expected to be');
+   equal(actual, expected, 'Hex-color is not what it was expected to be');
 }
