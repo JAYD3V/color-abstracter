@@ -22,6 +22,11 @@ types/
 *.d.ts
 *.d.ts.map
 
+# Logging
+Log/
+*.log.md
+*.log
+
 # FILE FOR TEST RUNNING SNIPPETS
 **/sandbox.ts
 

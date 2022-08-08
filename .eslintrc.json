@@ -10,13 +10,7 @@
         "project": ["./tsconfig.json"]
     },
 
-    "ignorePatterns": [
-        ".DEV/",
-        ".TRASH/",
-        "types/",
-        "out/",
-        "build/"
-    ],
+    "ignorePatterns": [".DEV/", ".TRASH/", "types/", "out/", "build/"],
 
     "rules": {
         /*
@@ -53,8 +47,7 @@
         "max-len": [
             "warn",
             {
-                "code": 90,
-                "tabWidth": 4,
+                "code": 85,
                 "ignoreStrings": true,
                 "ignoreTemplateLiterals": true,
                 "ignoreRegExpLiterals": true,
@@ -64,15 +57,14 @@
 
         "indent": [
             "warn",
-            4,
+            3,
             {
-                "FunctionExpression": { "parameters": "first" },
-                "FunctionDeclaration": { "parameters": "first" },
-                "CallExpression": { "arguments": "first" },
                 "ArrayExpression": "first",
-                "ObjectExpression": "first",
                 "VariableDeclarator": "first",
-                "ImportDeclaration": "first"
+                "ObjectExpression": "first",
+                "CallExpression": { "arguments": 2 },
+                "FunctionExpression": { "parameters": "first" },
+                "FunctionDeclaration": { "parameters": "first" }
             }
         ],
         /*
@@ -135,7 +127,7 @@
         "operator-linebreak": "warn",
         "eol-last": ["warn", "always"],
         "linebreak-style": ["warn", "unix"],
-
+        /*
         "padding-line-between-statements": [
             "warn",
             {
@@ -165,8 +157,8 @@
                 "next": ["const", "let", "var"]
             }
         ],
-
-        "curly": "warn",
+         */
+        "curly": "off", // TODO: Check if this rule can be further customized
         "for-direction": "warn",
         "constructor-super": "error",
         /* ___________________________________________
