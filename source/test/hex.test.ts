@@ -2,34 +2,47 @@
 import assert from 'node:assert/strict';
 import test, { describe, it } from 'node:test';
 
-
 // @PROJ_CLASS
 import HexColor from '../api/hex';
 
 
+genHexColorTest('#FFFFFF', '#ABCDEG');
+/* *****************************************************************************
 
-export function genHexColorTest(validHexColor:string, invalidHexColor:string)
-{
-   const mesg = {
-      init: 'Testing HexColor to RGBx255 Color Conversion'
+
+
+
+
+
+
+
+*********************************** TEST ***************************************/
+const __SKIP__ = { skip: true };
+
+export function genHexColorTest(validHexColor:string, invalidHexColor:string) {
+   const MESG = {
+      INIT : 'Testing HexColor to RGBx255 Color Conversion',
+      T1   : 'Expecting #color to be an instance of HexColor',
+      T2   : 'Expecting FormatError'
    };
 
-   return describe(mesg.init, () =>
-   {
+   return test(MESG.INIT, () => {
       const color = new HexColor(validHexColor);
 
-      test('#color should be an instance of HexColor', { skip: true }, (T) =>
-      {
+      //    - 01 -
+      test(MESG.T1, __SKIP__, (T) => {
          assert.ok(color instanceof HexColor);
       });
 
-      test('A FormatError should occur', { skip: true }, (T) =>
+      //    - 02 -
+      test(MESG.T2, __SKIP__, (T) =>
       {
-         T.skip();
-
-         assert.throws(() => { new HexColor(invalidHexColor); },
-               { name    : 'FormatError',
-                 message : 'HexColor is improperly formatted' });
+         assert.throws(() => {
+            new HexColor(invalidHexColor);
+         }, {
+            name    : 'FormatError',
+            message : 'HexColor is improperly formatted'
+         });
       });
    });
 }

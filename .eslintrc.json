@@ -64,7 +64,8 @@
                 "ObjectExpression": "first",
                 "CallExpression": { "arguments": 2 },
                 "FunctionExpression": { "parameters": "first" },
-                "FunctionDeclaration": { "parameters": "first" }
+                "FunctionDeclaration": { "parameters": "first" },
+                "SwitchCase": 1
             }
         ],
         /*
