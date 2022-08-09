@@ -1,6 +1,6 @@
 // @RTE_NATIVE
 import assert from 'node:assert/strict';
-import test, { describe, it } from 'node:test';
+// import test, { describe, it } from 'node:test';
 
 // @PROJ_CLASS
 import HexColor from '../api/hex';
@@ -26,16 +26,16 @@ export function genHexColorTest(validHexColor:string, invalidHexColor:string) {
       T2   : 'Expecting FormatError'
    };
 
-   return test(MESG.INIT, () => {
+   return describe(MESG.INIT, () => {
       const color = new HexColor(validHexColor);
 
       //    - 01 -
-      test(MESG.T1, __SKIP__, (T) => {
+      it(MESG.T1, () => {
          assert.ok(color instanceof HexColor);
       });
 
       //    - 02 -
-      test(MESG.T2, __SKIP__, (T) =>
+      it(MESG.T2, () =>
       {
          assert.throws(() => {
             new HexColor(invalidHexColor);
