@@ -1,17 +1,28 @@
 import { format as fmt } from 'node:util';
 import { FormatError } from './lib/err';
 
-const isHexColor = /^#([A-F0-9]{3}){1,2}$/i;
+const vldColor = /^#([A-F0-9]{3}){1,2}$/i;
 
 
 export default class HexColor
 {
-   color:string;
+   #_color:string = '';
 
-   constructor(colorValue:string)
+   constructor(hexVal:string)
    {
-      this.color = colorValue;
-      if (!isHexColor.test(colorValue)) { throw new FormatError('HexColor'); }
+      this.color = hexVal;
+   }
+
+   set color(hexVal:string) {
+      if (!vldColor.test(hexVal)) {
+         throw new FormatError('HexColor');
+      }
+
+      this.#_color = hexVal;
+   }
+
+   get color() {
+      return this.#_color;
    }
 
    #_validateColor(color:string)
