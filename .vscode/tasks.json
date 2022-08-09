@@ -23,21 +23,20 @@ TASKS LIST:
          "dependsOn": [
             "NPM: LINT",
             "TSC: CLEAN BUILD",
-            "TSC: FORCE BUILD",
+            "TSC: BUILD ALL",
             "NPM: TEST"
          ],
          "group": {
             "kind": "build",
             "isDefault": true
          },
-         "presentation": {
-            "showReuseMessage": false,
-            "panel": "dedicated",
-            "revealProblems": "onProblem"
+         "icon": {
+            "color": "terminal.ansiYellow",
+            "id": "wrench",
          }
       },
 
-      // TSC | BIUILD (std build)
+      // TSC | BUILD (std build)
       {
          "label": "TSC: BUILD MODIFIED",
          "detail": "Only emits JS files for modified source files",
@@ -60,10 +59,9 @@ TASKS LIST:
          "type": "shell",
          "command": "tsc -b tsconfig.json --force",
          "group": "build",
-         "presentation": {
-            "showReuseMessage": false,
-            "revealProblems": "onProblem",
-            "reveal": "silent"
+         "icon": {
+            "color": "terminal.ansiYellow",
+            "id": "wrench"
          }
       },
 
@@ -75,10 +73,9 @@ TASKS LIST:
          "type": "shell",
          "command": "tsc -b tsconfig.json --clean",
          "group": "build",
-         "presentation": {
-            "showReuseMessage": false,
-            "revealProblems": "onProblem",
-            "reveal": "silent"
+         "icon": {
+            "color": "terminal.ansiYellow",
+            "id": "wrench"
          }
       },
 
@@ -100,6 +97,10 @@ TASKS LIST:
             "panel": "dedicated",
             "showReuseMessage": false,
             "close": false,
+         },
+         "icon": {
+            "color": "terminal.ansiRed",
+            "id": "flame"
          }
       },
 
@@ -112,9 +113,14 @@ TASKS LIST:
          "detail": "npx eslint src/**/*.ts --fix",
          "presentation": {
             "showReuseMessage": false,
+            "panel": "dedicated",
             "revealProblems": "onProblem",
-            "reveal": "never",
+            "reveal": "silent",
             "group": "ESLint"
+         },
+         "icon": {
+            "color": "terminal.ansiYellow",
+            "id": "check"
          }
       },
 
@@ -132,6 +138,10 @@ TASKS LIST:
             "panel": "dedicated",
             "showReuseMessage": false,
             "close": false
+         },
+         "icon": {
+            "color": "terminal.ansiYellow",
+            "id": "beaker"
          }
       },
 
@@ -149,6 +159,10 @@ TASKS LIST:
             "panel": "dedicated",
             "group": "TSC Watcher",
             "showReuseMessage": false,
+         },
+         "icon": {
+            "color": "terminal.ansiRed",
+            "id": "eye"
          }
       },
    ]
