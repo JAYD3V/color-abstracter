@@ -10,7 +10,6 @@ package-lock.json
 # CONFIGURATION FILES
 .vscode/settings.json
 .vscode/launch.json
-.vscode/cspell.json
 .editorconfig
 cspell.json
 

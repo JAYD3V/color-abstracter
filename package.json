@@ -30,7 +30,7 @@
       "Color-object",
       "Object"
    ],
-   "main": "dist/main.js",
+   "main": "out/main.js",
    "devDependencies": {
       "@tsconfig/node16": "^1.0.3",
       "@tsconfig/node16-strictest": "^1.0.3",
@@ -43,12 +43,19 @@
       "typescript": "^4.7.4"
    },
    "scripts": {
-      "eslint": "npx eslint ./src/**/*.ts ./test/**/*.test.ts --fix",
+      "lint": "npx eslint src/**/*.ts --fix",
+      "build:watch": "tsc -b tsconfig.json --watch",
+      "// TSC COMMANDS":"",
+      "": "tsc -b tsconfig.json",
+      "watcher": "npm run tsc:build -- --force",
+      "tsc:clean": "npm run build -- --clean",
+      "// CODE EXECUTION SCRIPTS": "",
       "start": "npm run start:main",
-      "start:main": "node dist/main.js",
-      "start:sandbox": "node dist/sandbox.js",
-      "test": "node --test dist/test",
-      "build": "tsc -b tsconfig.json",
-      "build:watch": "tsc -b tsconfig.json --watch"
+      "start:main": "node out/main.js",
+      "start:sandbox": "node out/sandbox.js",
+      "// TEST RUNNER SCRIPTS": "",
+      "test": "mocha out/test",
+      "test:hsv": "mocha out/test/hsv.test.js",
+      "test:hex": "mocha out/test/hex.test.js"
    }
 }

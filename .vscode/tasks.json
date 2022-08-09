@@ -1,155 +1,155 @@
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "UPDATE BUILD",
-            "detail": "Build files marked as 'Modified'",
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "problemMatcher": [
-                "$tsc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "icon": {
-                "id": "refresh",
-                "color": "terminal.ansiGreen"
-            },
-            "presentation": {
-                "reveal": "silent",
-                "revealProblems": "onProblem",
-                "showReuseMessage": false,
-                "close": false,
-                "group": "build"
-            }
-        },
-        {
-            "label": "AUTO-BUILD",
-            "detail": "BG Process that builds changes as they occur",
-            "type": "typescript",
-            "tsconfig": "tsconfig.json",
-            "option": "watch",
-            "problemMatcher": [
-                "$tsc-watch"
-            ],
-            "group": "build",
-            "icon": {
-                "id": "eye-watch",
-                "color": "terminal.ansiGreen"
-            },
-            "presentation": {
-                "reveal": "never",
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "close": false,
-                "group": "build"
-            }
-        },
-        {
-            "label": "NEW BUILD",
-            "detail": "Deletes the old buid before rebuilding the entire project",
-            "dependsOn": [
-                "Delete Build",
-                "Update Build"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$tsc",
-            "group": "build",
-            "icon": {
-                "id": "refresh",
-                "color": "terminal.ansiGreen"
-            },
-            "presentation": {
-                "reveal": "silent",
-                "revealProblems": "onProblem",
-                "showReuseMessage": false,
-                "close": false,
-                "group": "build"
-            }
-        },
-        {
-            "label": "DELETE BUILD",
-            "detail": "Deletes all build dirs & files",
-            "type": "shell",
-            "command": "rm",
-            "args": [
-                "-rvf",
-                "${workspaceFolder}/out",
-                "${workspaceFolder}/types"
-            ],
-            "group": "build",
-            "icon": {
-                "id": "flame",
-                "color": "terminal.ansiMagenta"
-            },
-            "presentation": {
-                "panel": "new",
-                "reveal": "never",
-                "close": true,
-                "clear": true
-            }
-        },
-        {
-            "label": "PRODUCTION BUILD",
-            "detail": "Builds recent changes into project, then executes tests.",
-            "dependsOn": [
-                "UPDATE BUILD",
-                "RUN TESTS"
-            ],
-            "dependsOrder": "sequence",
-            "problemMatcher": "$tsc",
-            "group": "test",
-            "icon": {
-                "id": "pulse",
-                "color": "terminal.ansiGreen"
-            },
-            "presentation": {
-                "reveal": "silent",
-                "revealProblems": "onProblem",
-                "panel": "dedicated",
-                "close": false,
-                "showReuseMessage": false,
-                "group": "test"
-            }
-        },
-        {
-            "label": "RUN TESTS",
-            "detail": "Runs all test using the Node.js built-in test-runner",
-            "type": "npm",
-            "script": "test",
-            "group": {
-                "kind": "test",
-                "isDefault": true
-            },
-            "icon": {
-                "id": "beaker",
-                "color": "terminal.ansiYellow"
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "close": false,
-                "showReuseMessage": false,
-                "group": "test"
-            }
-        },
+// TODO: Check if close will close the problems window if set to true
 
-        {
-            "label":  "ESLint | Run Script",
-            "type":   "npm",
-            "script": "eslint",
-            "detail": "Lint source code & test directory",
-            "icon": {"id": "wrench", "color": "terminal.ansiBlue"},
-            "presentation": {
-                "reveal": "silent",
-                "revealProblems": "onProblem",
-                "focus": false,
-                "panel": "shared",
-                "showReuseMessage": false,
-                "close": false
-            }
-        }
-    ]
+/*******************************************
+TASKS LIST:
+   1. BUILD COLOR ABSTACTER
+   3. TSC: FORCE BUILD
+   2. TSC: UPDATE BUILD
+   4. TSC: CLEAN BUILD
+   5. SHELL: DELETE BUILD
+   6. NPM: LINT
+   7. NPM: TEST
+   8. TSC: WATCH
+
+*******************************************/
+{
+   "version": "2.0.0",
+   "tasks": [
+      // CORE BUILD TASK | EMIT PRODUCTION BUILD
+      {
+         "label": "BUILD COLOR ABSTACTER",
+         "detail": "Build from source",
+         "dependsOrder": "sequence",
+         "dependsOn": [
+            "NPM: LINT",
+            "TSC: CLEAN BUILD",
+            "TSC: FORCE BUILD",
+            "NPM: TEST"
+         ],
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         },
+         "presentation": {
+            "showReuseMessage": false,
+            "panel": "dedicated",
+            "revealProblems": "onProblem"
+         }
+      },
+
+      // TSC | BIUILD (std build)
+      {
+         "label": "TSC: BUILD MODIFIED",
+         "detail": "Only emits JS files for modified source files",
+         "problemMatcher": "$tsc",
+         "type": "shell",
+         "command": "tsc -b tsconfig.json",
+         "group": "build",
+         "presentation": {
+            "showReuseMessage": false,
+            "revealProblems": "onProblem",
+            "reveal": "silent"
+         }
+      },
+
+      // TSC | BUILD (force)
+      {
+         "label": "TSC: BUILD ALL",
+         "detail": "Emits JS files for all source files",
+         "problemMatcher": "$tsc",
+         "type": "shell",
+         "command": "tsc -b tsconfig.json --force",
+         "group": "build",
+         "presentation": {
+            "showReuseMessage": false,
+            "revealProblems": "onProblem",
+            "reveal": "silent"
+         }
+      },
+
+      // TSC | CLEAN
+      {
+         "label": "TSC: CLEAN BUILD",
+         "detail": "Removes all emitted build files (icludes map & declaration files)",
+         "problemMatcher": "$tsc",
+         "type": "shell",
+         "command": "tsc -b tsconfig.json --clean",
+         "group": "build",
+         "presentation": {
+            "showReuseMessage": false,
+            "revealProblems": "onProblem",
+            "reveal": "silent"
+         }
+      },
+
+      // SHELL: REMOVE "types" & "out" DIRS
+      {
+         "label": "SHELL: DELETE BUILD",
+         "detail": "Uses BASH to wipe tsc build dirs & all of the dirs contents",
+         "command": "rm",
+         "args": [
+            "-R",
+            "-d",
+            "-v",
+            "${workspaceFolder}/out",
+            "${workspaceFolder}/types"
+         ],
+         "group": "build",
+         "presentation": {
+            "reveal": "always",
+            "panel": "dedicated",
+            "showReuseMessage": false,
+            "close": false,
+         }
+      },
+
+      // NPM | LINT
+      {
+         "label": "NPM: LINT",
+         "type": "npm",
+         "script": "lint",
+         "problemMatcher": ["$eslint-stylish"],
+         "detail": "npx eslint src/**/*.ts --fix",
+         "presentation": {
+            "showReuseMessage": false,
+            "revealProblems": "onProblem",
+            "reveal": "never",
+            "group": "ESLint"
+         }
+      },
+
+      // NPM | TEST
+      {
+         "label": "NPM: TEST",
+         "type": "npm",
+         "script": "test",
+         "detail": "mocha out/test",
+         "group": {
+            "kind": "test",
+            "isDefault": true
+         },
+         "presentation": {
+            "panel": "dedicated",
+            "showReuseMessage": false,
+            "close": false
+         }
+      },
+
+      // TSC | FILE WATCHER
+      {
+         "label": "TSC: WATCH",
+         "type": "typescript",
+         "tsconfig": "tsconfig.json",
+         "option": "watch",
+         "problemMatcher": ["$tsc-watch"],
+         "group": "build",
+         "presentation": {
+            "echo": false,
+            "reveal": "never",
+            "panel": "dedicated",
+            "group": "TSC Watcher",
+            "showReuseMessage": false,
+         }
+      },
+   ]
 }

@@ -1,19 +1,25 @@
 {
-    "$schema": "https://json.schemastore.org/eslintrc.json",
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+   "$schema": "https://json.schemastore.org/eslintrc.json",
+   "root": true,
 
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "tsconfigRootDir": ".",
-        "project": ["./tsconfig.json"]
-    },
+   "ignorePatterns": [".DEV/", ".TRASH/", "types/", "out/", "build/"],
+   "plugins": ["@typescript-eslint"],
+   "env": {
+      "es6": true,
+      "mocha": true,
+      "node": true
+   },
 
-    "ignorePatterns": [".DEV/", ".TRASH/", "types/", "out/", "build/"],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "tsconfigRootDir": "./",
+      "project": ["tsconfig.json"]
+   },
 
-    "rules": {
-        /*
+   "rules": {
+      /*
         ____________________________________________________
 
 
@@ -22,113 +28,121 @@
           (should be enabled once project is in production)
 
         ____________________________________________________ */
-        "no-unused-vars": "off",
-        "no-unreachable": "off",
-        "prefer-const": "off",
-
-        /*
+      "no-unused-vars": "off",
+      "no-unreachable": "off",
+      "prefer-const": "off",
+      /*
         _______________________________________________
 
 
                 * BASIC CODE FORMATTING RULES *
         _______________________________________________ */
-        "space-infix-ops": "off",
-        "@typescript-eslint/space-infix-ops": "warn",
-
-        "quotes": "off",
-        "@typescript-eslint/quotes": ["warn", "single"],
-
-        "semi": "off",
-        "@typescript-eslint/semi": "warn",
-
-        "comma-dangle": "off",
-        "@typescript-eslint/comma-dangle": ["warn", "never"],
-
-        "max-len": [
-            "warn",
-            {
-                "code": 85,
-                "ignoreStrings": true,
-                "ignoreTemplateLiterals": true,
-                "ignoreRegExpLiterals": true,
-                "ignoreUrls": true
-            }
-        ],
-
-        "indent": [
-            "warn",
-            3,
-            {
-                "ArrayExpression": "first",
-                "VariableDeclarator": "first",
-                "ObjectExpression": "first",
-                "CallExpression": { "arguments": 2 },
-                "FunctionExpression": { "parameters": "first" },
-                "FunctionDeclaration": { "parameters": "first" },
-                "SwitchCase": 1
-            }
-        ],
-        /*
+      "space-infix-ops": "off",
+      "@typescript-eslint/space-infix-ops": "warn",
+      "quotes": "off",
+      "@typescript-eslint/quotes": ["warn", "single"],
+      "semi": "off",
+      "@typescript-eslint/semi": "warn",
+      "comma-dangle": "off",
+      "@typescript-eslint/comma-dangle": ["warn", "never"],
+      "max-len": [
+         "warn",
+         {
+            "code": 85,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true,
+            "ignoreRegExpLiterals": true,
+            "ignoreUrls": true
+         }
+      ],
+      "indent": [
+         "warn",
+         3,
+         {
+            "ArrayExpression": "first",
+            "VariableDeclarator": "first",
+            "ObjectExpression": "first",
+            "CallExpression": {
+               "arguments": 2
+            },
+            "FunctionExpression": {
+               "parameters": "first"
+            },
+            "FunctionDeclaration": {
+               "parameters": "first"
+            },
+            "SwitchCase": 1
+         }
+      ],
+      /*
 
         ________________________________________________
 
 
                         * SPACING RULES *
         ________________________________________________ */
-        "block-spacing": "warn",
-        "array-bracket-spacing": ["warn", "never"],
-        "space-in-parens": ["warn", "never"],
-        "func-call-spacing": ["warn", "never"],
-        "arrow-spacing": "warn",
-        // SURGEON GEJON
-        "object-curly-spacing": "off",
-        "@typescript-eslint/object-curly-spacing": [
-            "warn",
-            "always",
-            { "arraysInObjects": false, "objectsInObjects": false }
-        ],
-
-        "key-spacing": [
-            "warn",
-            { "align": { "beforeColon": true, "afterColon": true } }
-        ],
-
-        "@typescript-eslint/type-annotation-spacing": [
-            "warn",
-            {
-                "before": false,
-                "after": false,
-                "overrides": { "arrow": { "after": true } }
+      "block-spacing": "warn",
+      "array-bracket-spacing": ["warn", "never"],
+      "space-in-parens": ["warn", "never"],
+      "func-call-spacing": ["warn", "never"],
+      "arrow-spacing": "warn",
+      // SURGEON GEJON
+      "object-curly-spacing": "off",
+      "@typescript-eslint/object-curly-spacing": [
+         "warn",
+         "always",
+         {
+            "arraysInObjects": false,
+            "objectsInObjects": false
+         }
+      ],
+      "key-spacing": [
+         "warn",
+         {
+            "align": {
+               "beforeColon": true,
+               "afterColon": true
             }
-        ],
+         }
+      ],
+      "@typescript-eslint/type-annotation-spacing": [
+         "warn",
+         {
+            "before": false,
+            "after": false,
+            "overrides": {
+               "arrow": {
+                  "after": true
+               }
+            }
+         }
+      ],
 
-        // PAIR (don't separate): "comma-spacing"
-        "comma-spacing": "off",
-        "@typescript-eslint/comma-spacing": "warn",
+      // PAIR (don't separate): "comma-spacing"
+      "comma-spacing": "off",
+      "@typescript-eslint/comma-spacing": "warn",
 
-        // PAIR (don't separate): "keyword-spacing"
-        "keyword-spacing": "off",
-        "@typescript-eslint/keyword-spacing": "warn",
+      // PAIR (don't separate): "keyword-spacing"
+      "keyword-spacing": "off",
+      "@typescript-eslint/keyword-spacing": "warn",
 
-        // PAIR (don't separate): "space-before-blocks"
-        "space-before-blocks": "off",
-        "@typescript-eslint/space-before-blocks": ["error"],
+      // PAIR (don't separate): "space-before-blocks"
+      "space-before-blocks": "off",
+      "@typescript-eslint/space-before-blocks": ["error"],
 
-        // PAIR (don't separate): "space-before-function-paren"
-        "space-before-function-paren": "off",
-        "@typescript-eslint/space-before-function-paren": ["warn", "never"],
-        /*
+      // PAIR (don't separate): "space-before-function-paren"
+      "space-before-function-paren": "off",
+      "@typescript-eslint/space-before-function-paren": ["warn", "never"],
+      /*
 
-        ________________________________________________
-
-
-                        * LINE RULES *
-        ________________________________________________ */
-        "default-param-last": "warn",
-        "operator-linebreak": "warn",
-        "eol-last": ["warn", "always"],
-        "linebreak-style": ["warn", "unix"],
-        /*
+      _______________________________________________
+                      * LINE RULES *
+      _______________________________________________ */
+      "default-param-last": "warn",
+      "operator-linebreak": "warn",
+      "eol-last": ["warn", "always"],
+      "linebreak-style": ["warn", "unix"],
+      /*
         "padding-line-between-statements": [
             "warn",
             {
@@ -159,75 +173,77 @@
             }
         ],
          */
-        "curly": "off", // TODO: Check if this rule can be further customized
-        "for-direction": "warn",
-        "constructor-super": "error",
-        /* ___________________________________________
+      "curly": "off", // TODO: Check if this rule can be further customized
+      "for-direction": "warn",
+      "constructor-super": "error",
+      /* ___________________________________________
 
 
                     * BARRED SYNTAX USES *
         ______________________________________________ */
-        // Barred Syntax @ Level: "ERROR"
-        "no-dupe-keys": "error",
-        "no-dupe-args": "error",
-        "no-dupe-class-members": "error",
-        "no-global-assign": "error",
-        "no-duplicate-case": "error",
-        "no-extra-semi": "error",
-        "no-tabs": "error",
-        "no-const-assign": "error",
-        "no-eval": "error",
-        "no-var": "error",
-        "no-throw-literal": "error",
-
-        // Barred Syntax @ Level: "WARN"
-        /* ___________________________________________
+      // Barred Syntax @ Level: "ERROR"
+      "no-dupe-keys": "error",
+      "no-dupe-args": "error",
+      "no-dupe-class-members": "error",
+      "no-global-assign": "error",
+      "no-duplicate-case": "error",
+      "no-extra-semi": "error",
+      "no-tabs": "error",
+      "no-const-assign": "error",
+      "no-eval": "error",
+      "no-var": "error",
+      "no-throw-literal": "error",
+      // Barred Syntax @ Level: "WARN"
+      /* ___________________________________________
 
 
            * LESS-DANGEROUS UNDESIRABLE SYNTAX USES *
         ______________________________________________ */
-        "no-multiple-empty-lines": ["warn", { "max": 8 }],
-        "no-buffer-constructor": "warn",
-        "no-caller": "warn",
-        "no-case-declarations": "warn",
-        "no-duplicate-imports": "warn",
-        "no-async-promise-executor": "warn",
-        "no-new-wrappers": "warn",
-        "no-sparse-arrays": "warn",
-        "no-unsafe-finally": "warn",
-        "no-unused-labels": "warn",
-        "no-constructor-return": "warn",
-        "no-else-return": "warn",
-        "no-trailing-spaces": "warn",
-
-        // TS-ESLint Barred Rules
-        "no-useless-constructor": "off",
-        "@typescript-eslint/no-useless-constructor": "warn",
-
-        "@typescript-eslint/no-explicit-any": [
-            "warn",
-            { "ignoreRestArgs": true }
-        ],
-
-        "eqeqeq": "warn",
-
-        /**
+      "no-multiple-empty-lines": [
+         "warn",
+         {
+            "max": 8
+         }
+      ],
+      "no-buffer-constructor": "warn",
+      "no-caller": "warn",
+      "no-case-declarations": "warn",
+      "no-duplicate-imports": "warn",
+      "no-async-promise-executor": "warn",
+      "no-new-wrappers": "warn",
+      "no-sparse-arrays": "warn",
+      "no-unsafe-finally": "warn",
+      "no-unused-labels": "warn",
+      "no-constructor-return": "warn",
+      "no-else-return": "warn",
+      "no-trailing-spaces": "warn",
+      // TS-ESLint Barred Rules
+      "no-useless-constructor": "off",
+      "@typescript-eslint/no-useless-constructor": "warn",
+      "@typescript-eslint/no-explicit-any": [
+         "warn",
+         {
+            "ignoreRestArgs": true
+         }
+      ],
+      "eqeqeq": "warn",
+      /**
 
 
 
         *--------------------------------------------------------*
             * TS-ESLint Unique Rules *
         *--------------------------------------------------------* */
-        "@typescript-eslint/prefer-readonly": [
-            "warn",
-            {
-                "multiline": {
-                    "delimiter": "semi",
-                    "requireLast": true
-                }
+      "@typescript-eslint/prefer-readonly": [
+         "warn",
+         {
+            "multiline": {
+               "delimiter": "semi",
+               "requireLast": true
             }
-        ]
-        /*
+         }
+      ]
+      /*
          "@typescript-eslint/naming-convention": [
             "warn",
             {
@@ -244,5 +260,5 @@
                 "format": ["camelCase", "UPPER_CASE"]
             }
         ] */
-    }
+   }
 }
